@@ -74,6 +74,7 @@ func (psh PartSetHeader) ValidateBasic() error {
 		return errors.New("Negative Total")
 	}
 	// Hash can be empty in case of POLBlockID.PartsHeader in Proposal.
+	// 如果Proposal中的POLBlockID.PartsHeader，哈希可以为空。
 	if err := ValidateHash(psh.Hash); err != nil {
 		return errors.Wrap(err, "Wrong Hash")
 	}

@@ -128,6 +128,12 @@ func (bs *BaseService) SetLogger(l log.Logger) {
 // Start implements Service by calling OnStart (if defined). An error will be
 // returned if the service is already running or stopped. Not to start the
 // stopped service, you need to call Reset.
+/**
+TODO 真正的 tendermint node的启动入口
+通过调用OnStart（如果已定义）启动实现服务。
+如果服务已在运行或已停止，则将返回错误。
+要不启动已停止的服务，您需要调用重置。
+ */
 func (bs *BaseService) Start() error {
 	if atomic.CompareAndSwapUint32(&bs.started, 0, 1) {
 		if atomic.LoadUint32(&bs.stopped) == 1 {
@@ -137,6 +143,10 @@ func (bs *BaseService) Start() error {
 			return ErrAlreadyStopped
 		}
 		bs.Logger.Info(fmt.Sprintf("Starting %v", bs.name), "impl", bs.impl)
+
+		/**
+		TODO 启动node
+		 */
 		err := bs.impl.OnStart()
 		if err != nil {
 			// revert flag

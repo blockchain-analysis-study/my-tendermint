@@ -447,6 +447,8 @@ func NewNode(config *cfg.Config,
 	blockExec := sm.NewBlockExecutor(
 		stateDB,
 		blockExecLogger,
+
+		/** TODO 创建proxyApp并建立与ABCI应用程序的连接（共识，mempool，查询）。 */
 		proxyApp.Consensus(),
 		mempool,
 		evidencePool,

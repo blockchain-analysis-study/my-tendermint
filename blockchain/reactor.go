@@ -53,22 +53,40 @@ func (e peerError) Error() string {
 }
 
 // BlockchainReactor handles long-term catchup syncing.
+/**
+Blockchain Reactor:
+处理长期追赶同步。
+ */
 type BlockchainReactor struct {
+
+	// 继承基础反应器
 	p2p.BaseReactor
 
 	// immutable
+	// 一成不变
+	// 这个就是 state (state/state.go)
 	initialState sm.State
 
+	// 区块执行器
 	blockExec *sm.BlockExecutor
+
+	// block db 的包装层
 	store     *BlockStore
+
+	// 一个专门做同步的 pool？ 类似以太坊的peerManager ？
 	pool      *BlockPool
+
+	// 是否快速同步模式
 	fastSync  bool
 
+	// 单向 接收通道
+	// 引用和 BlockPool 中的引用一致
 	requestsCh <-chan BlockRequest
 	errorsCh   <-chan peerError
 }
 
 // NewBlockchainReactor returns new reactor instance.
+// 实例化一个blockchain的反应器
 func NewBlockchainReactor(state sm.State, blockExec *sm.BlockExecutor, store *BlockStore,
 	fastSync bool) *BlockchainReactor {
 
@@ -77,13 +95,24 @@ func NewBlockchainReactor(state sm.State, blockExec *sm.BlockExecutor, store *Bl
 			store.Height()))
 	}
 
+	/**
+	创建 双向通道
+	用来接收 BlockRequest
+	BlockRequest：结构体总只有  height 和 p2p.PID 两个字段
+	 */
 	requestsCh := make(chan BlockRequest, maxTotalRequesters)
 
-	const capacity = 1000                      // must be bigger than peers count
+	const capacity = 1000                      // must be bigger than peers count   必须要比节点的数量多
+
+	/**
+	创建双向通道
+	 */
 	errorsCh := make(chan peerError, capacity) // so we don't block in #Receive#pool.AddBlock
 
 	pool := NewBlockPool(
 		store.Height()+1,
+
+		// 把引用赋值给 BlockPool 中的 单向 发送通道字段
 		requestsCh,
 		errorsCh,
 	)
@@ -94,6 +123,8 @@ func NewBlockchainReactor(state sm.State, blockExec *sm.BlockExecutor, store *Bl
 		store:        store,
 		pool:         pool,
 		fastSync:     fastSync,
+
+		// 把引用赋值给 BlockchainReactor 中的 单向 接收通道字段
 		requestsCh:   requestsCh,
 		errorsCh:     errorsCh,
 	}
@@ -109,11 +140,21 @@ func (bcR *BlockchainReactor) SetLogger(l log.Logger) {
 
 // OnStart implements cmn.Service.
 func (bcR *BlockchainReactor) OnStart() error {
+
+	// 如果是 快速同步模式
 	if bcR.fastSync {
+
+		// 启动 BlockPool 中的 BaseServive
+		// 这里最终调到 node的start()
 		err := bcR.pool.Start()
 		if err != nil {
 			return err
 		}
+
+		/**
+		启动 守护进程
+		处理交易？
+		 */
 		go bcR.poolRoutine()
 	}
 	return nil
@@ -216,7 +257,7 @@ func (bcR *BlockchainReactor) Receive(chID byte, src p2p.Peer, msgBytes []byte) 
 TODO 超级重要
 交易执行入口？
 处理来自poolReactor的消息，告诉reactor如何做。
-注意：不要在FOR_LOOP中睡觉或以其他方式减速！
+注意：不要在FOR_LOOP中 sleep或以其他方式减速！
  */
 func (bcR *BlockchainReactor) poolRoutine() {
 
@@ -227,12 +268,16 @@ func (bcR *BlockchainReactor) poolRoutine() {
 	statusUpdateTicker := time.NewTicker(statusUpdateIntervalSeconds * time.Second)
 	switchToConsensusTicker := time.NewTicker(switchToConsensusIntervalSeconds * time.Second)
 
+	// 区块同步计数
 	blocksSynced := 0
 
+	// 从 链反应器中获取 链ID
 	chainID := bcR.initialState.ChainID
 	state := bcR.initialState
 
+	// 最后一百？？ 啥啊 不就是当前时间戳么？
 	lastHundred := time.Now()
+	// 最后的百分比？
 	lastRate := 0.0
 
 	didProcessCh := make(chan struct{}, 1)
@@ -240,16 +285,27 @@ func (bcR *BlockchainReactor) poolRoutine() {
 FOR_LOOP:
 	for {
 		select {
+		// 如果接受到一个 远端peer 的请求
 		case request := <-bcR.requestsCh:
+
+			// 获取当中的 peer 实例
 			peer := bcR.Switch.Peers().Get(request.PeerID)
 			if peer == nil {
 				continue FOR_LOOP // Peer has since been disconnected.
 			}
 			msgBytes := cdc.MustMarshalBinaryBare(&bcBlockRequestMessage{request.Height})
+			/**
+			TODO
+			尝试性的 往对端节点发起请求
+			 */
 			queued := peer.TrySend(BlockchainChannel, msgBytes)
 			if !queued {
 				// We couldn't make the request, send-queue full.
 				// The pool handles timeouts, just let it go.
+				/**
+				我们无法发出请求，发送队列已满。
+				pool处理超时，让它 过掉。
+				 */
 				continue FOR_LOOP
 			}
 
@@ -261,17 +317,22 @@ FOR_LOOP:
 
 		case <-statusUpdateTicker.C:
 			// ask for status updates
+			// 广播 本地中的 blockstore 中的height
 			go bcR.BroadcastStatusRequest() // nolint: errcheck
 
 		case <-switchToConsensusTicker.C:
+			// 获取 本地 pool 中的某些状态： height 之类
 			height, numPending, lenRequesters := bcR.pool.GetStatus()
 			outbound, inbound, _ := bcR.Switch.NumPeers()
 			bcR.Logger.Debug("Consensus ticker", "numPending", numPending, "total", lenRequesters,
 				"outbound", outbound, "inbound", inbound)
+
+			// 如果当前pool 追赶上了 最新的chain的最高块
 			if bcR.pool.IsCaughtUp() {
 				bcR.Logger.Info("Time to switch to consensus reactor!", "height", height)
 				bcR.pool.Stop()
 
+				// 获取之前注册在 sw 对象中的 共识反应器
 				conR, ok := bcR.Switch.Reactor("CONSENSUS").(consensusReactor)
 				if ok {
 					conR.SwitchToConsensus(state, blocksSynced)
@@ -288,6 +349,9 @@ FOR_LOOP:
 			default:
 			}
 
+			/**
+			接受到执行区块信号
+			 */
 		case <-didProcessCh:
 			// NOTE: It is a subtle mistake to process more than a single block
 			// at a time (e.g. 10) here, because we only TrySend 1 request per
@@ -343,9 +407,14 @@ FOR_LOOP:
 				// TODO: same thing for app - but we would need a way to
 				// get the hash without persisting the state
 				var err error
+				/**
+				TODO 重要
+				这里执行区块
+				 */
 				state, err = bcR.blockExec.ApplyBlock(state, firstID, first)
 				if err != nil {
 					// TODO This is bad, are we zombie?
+					// TODO 这很糟糕，我们是僵尸吗？
 					panic(fmt.Sprintf("Failed to process committed block (%d:%X): %v", first.Height, first.Hash(), err))
 				}
 				blocksSynced++
@@ -366,6 +435,8 @@ FOR_LOOP:
 }
 
 // BroadcastStatusRequest broadcasts `BlockStore` height.
+// BroadcastStatusRequest:
+// 广播`BlockStore`高度。
 func (bcR *BlockchainReactor) BroadcastStatusRequest() error {
 	msgBytes := cdc.MustMarshalBinaryBare(&bcStatusRequestMessage{bcR.store.Height()})
 	bcR.Switch.Broadcast(BlockchainChannel, msgBytes)

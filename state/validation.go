@@ -13,8 +13,12 @@ import (
 //-----------------------------------------------------
 // Validate block
 
+/**
+校验 区块
+ */
 func validateBlock(evidencePool EvidencePool, stateDB dbm.DB, state State, block *types.Block) error {
 	// Validate internal consistency.
+	// 验证内部一致性
 	if err := block.ValidateBasic(); err != nil {
 		return err
 	}

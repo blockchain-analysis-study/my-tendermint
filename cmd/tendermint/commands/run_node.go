@@ -45,11 +45,17 @@ func AddNodeFlags(cmd *cobra.Command) {
 
 // NewRunNodeCmd returns the command that allows the CLI to start a node.
 // It can be used with a custom PrivValidator and in-process ABCI application.
+/**
+NewRunNodeCmd返回允许CLI启动节点的命令。
+它可以与自定义PrivValidator和进程内ABCI应用程序一起使用。
+ */
 func NewRunNodeCmd(nodeProvider nm.NodeProvider) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "node",
 		Short: "Run the tendermint node",
 		RunE: func(cmd *cobra.Command, args []string) error {
+
+			// 根据入参的 NewNodeFunc 实例化一个 Node
 			n, err := nodeProvider(config, logger)
 			if err != nil {
 				return fmt.Errorf("Failed to create node: %v", err)
@@ -62,6 +68,10 @@ func NewRunNodeCmd(nodeProvider nm.NodeProvider) *cobra.Command {
 				}
 			})
 
+			/**
+			TODO 这里是真正的启动节点入口函数
+			启动一个 Node 实例
+			 */
 			if err := n.Start(); err != nil {
 				return fmt.Errorf("Failed to start node: %v", err)
 			}

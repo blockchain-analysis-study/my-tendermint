@@ -23,6 +23,11 @@ type BlockExecutor struct {
 	db dbm.DB
 
 	// execute the app against this
+	//
+	// 针对此执行应用程序
+	//
+	/** TODO 创建proxyApp并建立与ABCI应用程序的连接（共识，mempool，查询）。 */
+	// 这里是入参了 proxyApp.Consensus() 获取到的所有参与共识的链接？
 	proxyApp proxy.AppConnConsensus
 
 	// events
@@ -51,6 +56,9 @@ func BlockExecutorWithMetrics(metrics *Metrics) BlockExecutorOption {
 func NewBlockExecutor(db dbm.DB, logger log.Logger, proxyApp proxy.AppConnConsensus, mempool Mempool, evpool EvidencePool, options ...BlockExecutorOption) *BlockExecutor {
 	res := &BlockExecutor{
 		db:       db,
+
+		/** TODO 创建proxyApp并建立与ABCI应用程序的连接（共识，mempool，查询）。 */
+		// 这里是入参了 proxyApp.Consensus() 获取到的所有参与共识的链接？
 		proxyApp: proxyApp,
 		eventBus: types.NopEventBus{},
 		mempool:  mempool,
@@ -107,6 +115,7 @@ func (blockExec *BlockExecutor) CreateProposalBlock(
 // If the block is invalid, it returns an error.
 // Validation does not mutate state, but does require historical information from the stateDB,
 // ie. to verify evidence from a validator at an old height.
+// 校验区块
 func (blockExec *BlockExecutor) ValidateBlock(state State, block *types.Block) error {
 	return validateBlock(blockExec.evpool, blockExec.db, state, block)
 }
@@ -116,13 +125,29 @@ func (blockExec *BlockExecutor) ValidateBlock(state State, block *types.Block) e
 // It's the only function that needs to be called
 // from outside this package to process and commit an entire block.
 // It takes a blockID to avoid recomputing the parts hash.
+/**
+ApplyBlock:
+针对 state 验证块，针对应用程序执行块，触发相关事件，提交应用程序，并保存新状态和响应。
+它是唯一需要从此包外部调用以处理和提交整个块的函数。
+它需要一个blockID来避免重新计算部件哈希值。
+ */
 func (blockExec *BlockExecutor) ApplyBlock(state State, blockID types.BlockID, block *types.Block) (State, error) {
 
+	/**
+	先校验区块
+	 */
 	if err := blockExec.ValidateBlock(state, block); err != nil {
 		return state, ErrInvalidBlock(err)
 	}
 
+
+	// 当前时间戳
 	startTime := time.Now().UnixNano()
+
+	//
+	//
+	/** TODO 创建proxyApp并建立与ABCI应用程序的连接（共识，mempool，查询）。 */
+	// 这里是入参了 proxyApp.Consensus() 获取到的所有参与共识的链接？
 	abciResponses, err := execBlockOnProxyApp(blockExec.logger, blockExec.proxyApp, block, state.LastValidators, blockExec.db)
 	endTime := time.Now().UnixNano()
 	blockExec.metrics.BlockProcessingTime.Observe(float64(endTime-startTime) / 1000000)
@@ -236,8 +261,18 @@ func (blockExec *BlockExecutor) Commit(
 
 // Executes block's transactions on proxyAppConn.
 // Returns a list of transaction results and updates to the validator set
+/**
+TODO 重要的 辅助函数
+辅助函数用于执行block和更新state
+
+在proxyAppConn上执行块的 tx。
+返回 tx结果列表和 验证人集的更新
+ */
 func execBlockOnProxyApp(
 	logger log.Logger,
+
+	/** TODO 创建proxyApp并建立与ABCI应用程序的连接（共识，mempool，查询）。 */
+	// 这里是入参了 proxyApp.Consensus() 获取到的所有参与共识的链接？
 	proxyAppConn proxy.AppConnConsensus,
 	block *types.Block,
 	lastValSet *types.ValidatorSet,
@@ -246,28 +281,49 @@ func execBlockOnProxyApp(
 	var validTxs, invalidTxs = 0, 0
 
 	txIndex := 0
+
+	// 根据 block 创建了一个 resp ？？
 	abciResponses := NewABCIResponses(block)
 
 	// Execute transactions and get hash.
+	// 执行 tx 并获取 Hash
+	//
+	// 定义一个内部函数 （定义一个回调函数）
 	proxyCb := func(req *abci.Request, res *abci.Response) {
+
+		// 判断 入参的res类型
 		switch r := res.Value.(type) {
+
+		// 如果是 交付tx 类型
 		case *abci.Response_DeliverTx:
 			// TODO: make use of res.Log
 			// TODO: make use of this info
 			// Blocks may include invalid txs.
+			// 块可能包括无效的tx
+			//
+			// DeliverTx 代表是一个 交付类型tx
 			txRes := r.DeliverTx
+
+			// 如果ok 则 有效tx计数 +1
 			if txRes.Code == abci.CodeTypeOK {
 				validTxs++
 			} else {
+					// 否则无效tx计数 +1
 				logger.Debug("Invalid tx", "code", txRes.Code, "log", txRes.Log)
 				invalidTxs++
 			}
+
+			// 记录这个 tx 的res
 			abciResponses.DeliverTx[txIndex] = txRes
 			txIndex++
 		}
 	}
+
+	// 设置 resp 回调
 	proxyAppConn.SetResponseCallback(proxyCb)
 
+
+	// TODO 。。。
 	commitInfo, byzVals := getBeginBlockValidatorInfo(block, lastValSet, stateDB)
 
 	// Begin block

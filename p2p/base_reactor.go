@@ -32,8 +32,11 @@ type Reactor interface {
 
 //--------------------------------------
 
+// 基础反应器
 type BaseReactor struct {
+	// 继承基础服务
 	cmn.BaseService // Provides Start, Stop, .Quit
+	// 内置p2p 开关
 	Switch          *Switch
 }
 

@@ -79,10 +79,12 @@ func (b *Block) ValidateBasic() error {
 	b.mtx.Lock()
 	defer b.mtx.Unlock()
 
+	// 校验 链ID的合法性
 	if len(b.ChainID) > MaxChainIDLen {
 		return fmt.Errorf("ChainID is too long. Max is %d, got %d", MaxChainIDLen, len(b.ChainID))
 	}
 
+	// 校验当前块高的合法性
 	if b.Height < 0 {
 		return errors.New("Negative Header.Height")
 	} else if b.Height == 0 {
@@ -90,8 +92,10 @@ func (b *Block) ValidateBasic() error {
 	}
 
 	// NOTE: Timestamp validation is subtle and handled elsewhere.
+	// 注意： 时间戳验证是微妙的，并在其他地方处理。
 
 	newTxs := int64(len(b.Data.Txs))
+	// 区块头中记录的 成功打包的tx 不等于 body中被打包tx数量时。
 	if b.NumTxs != newTxs {
 		return fmt.Errorf("Wrong Header.NumTxs. Expected %v, got %v",
 			newTxs,
@@ -100,29 +104,40 @@ func (b *Block) ValidateBasic() error {
 	}
 
 	// TODO: fix tests so we can do this
+	// 我们这样可以做到，修复测试
 	/*if b.TotalTxs < b.NumTxs {
 		return fmt.Errorf("Header.TotalTxs (%d) is less than Header.NumTxs (%d)", b.TotalTxs, b.NumTxs)
 	}*/
+	//  校验 总的提交的tx数量
 	if b.TotalTxs < 0 {
 		return errors.New("Negative Header.TotalTxs")
 	}
 
+	// 校验 LastBlockID
 	if err := b.LastBlockID.ValidateBasic(); err != nil {
 		return fmt.Errorf("Wrong Header.LastBlockID: %v", err)
 	}
 
 	// Validate the last commit and its hash.
+	// 验证最后一次提交及其哈希。
 	if b.Header.Height > 1 {
 		if b.LastCommit == nil {
 			return errors.New("nil LastCommit")
 		}
+
+		// 校验 commit 的合法性
+		// 主要是校验commit 中的vote集合
 		if err := b.LastCommit.ValidateBasic(); err != nil {
 			return fmt.Errorf("Wrong LastCommit")
 		}
 	}
+
+	// 校验 commit 的Hash
 	if err := ValidateHash(b.LastCommitHash); err != nil {
 		return fmt.Errorf("Wrong Header.LastCommitHash: %v", err)
 	}
+
+	// 如果 header中记录的commit Hash 和body 中记录的commits求出来的Hash不一致时
 	if !bytes.Equal(b.LastCommitHash, b.LastCommit.Hash()) {
 		return fmt.Errorf("Wrong Header.LastCommitHash. Expected %v, got %v",
 			b.LastCommit.Hash(),
@@ -133,9 +148,12 @@ func (b *Block) ValidateBasic() error {
 	// Validate the hash of the transactions.
 	// NOTE: b.Data.Txs may be nil, but b.Data.Hash()
 	// still works fine
+	// 校验Tx root Hash
 	if err := ValidateHash(b.DataHash); err != nil {
 		return fmt.Errorf("Wrong Header.DataHash: %v", err)
 	}
+
+	// 校验Header 中的txs root hash 和 body中的txs求出来的Hash 不一致时
 	if !bytes.Equal(b.DataHash, b.Data.Hash()) {
 		return fmt.Errorf(
 			"Wrong Header.DataHash. Expected %v, got %v",
@@ -146,30 +164,44 @@ func (b *Block) ValidateBasic() error {
 
 	// Basic validation of hashes related to application data.
 	// Will validate fully against state in state#ValidateBlock.
+
+	// 校验当前区块时的当前轮验证人的Hash
 	if err := ValidateHash(b.ValidatorsHash); err != nil {
 		return fmt.Errorf("Wrong Header.ValidatorsHash: %v", err)
 	}
+
+	// 校验下一轮验证人的Hash
 	if err := ValidateHash(b.NextValidatorsHash); err != nil {
 		return fmt.Errorf("Wrong Header.NextValidatorsHash: %v", err)
 	}
+
+	// 校验 共识参数Hash
 	if err := ValidateHash(b.ConsensusHash); err != nil {
 		return fmt.Errorf("Wrong Header.ConsensusHash: %v", err)
 	}
 	// NOTE: AppHash is arbitrary length
+	// 注意： AppHash是任意长度
+	//
+	// 校验AppHash
 	if err := ValidateHash(b.LastResultsHash); err != nil {
 		return fmt.Errorf("Wrong Header.LastResultsHash: %v", err)
 	}
 
 	// Validate evidence and its hash.
+	// 校验凭证Hash
 	if err := ValidateHash(b.EvidenceHash); err != nil {
 		return fmt.Errorf("Wrong Header.EvidenceHash: %v", err)
 	}
 	// NOTE: b.Evidence.Evidence may be nil, but we're just looping.
+	// 注意： b.Evidence.Evidence可能是零，但我们只是循环。
 	for i, ev := range b.Evidence.Evidence {
+		// 循环遍历校验凭证
 		if err := ev.ValidateBasic(); err != nil {
 			return fmt.Errorf("Invalid evidence (#%d): %v", i, err)
 		}
 	}
+
+	// 对比Header中的凭证Hash和根据body中的凭证计算出来的Hash 不相等时
 	if !bytes.Equal(b.EvidenceHash, b.Evidence.Hash()) {
 		return fmt.Errorf("Wrong Header.EvidenceHash. Expected %v, got %v",
 			b.EvidenceHash,
@@ -177,6 +209,8 @@ func (b *Block) ValidateBasic() error {
 		)
 	}
 
+
+	// 计算提议节点地址的长度合法性
 	if len(b.ProposerAddress) != crypto.AddressSize {
 		return fmt.Errorf("Expected len(Header.ProposerAddress) to be %d, got %d",
 			crypto.AddressSize, len(b.ProposerAddress))
@@ -380,7 +414,7 @@ type Header struct {
 	Time     time.Time         `json:"time"`
 	// 执行成功的交易数 ？
 	NumTxs   int64             `json:"num_txs"`
-	// 总交易数
+	// 总交易数 (以往区块到现在为止的共交易数？还是这个块当时被提交的总交易数？)
 	TotalTxs int64             `json:"total_txs"`
 
 	// prev block info
@@ -391,7 +425,7 @@ type Header struct {
 	// hashes of block data
 	// 区块Data 的Hash
 
-	// 上一个块的 commitHash
+	// 最终提交时的 commitHash (当前block的body中的commits 的Hash)
 	LastCommitHash cmn.HexBytes `json:"last_commit_hash"` // commit from validators from the last block ： 从上一个块的所有 验证人提交过来的
 
 	// 当前块的 txHash (类似以太坊的 tx树)
@@ -404,7 +438,7 @@ type Header struct {
 	ValidatorsHash     cmn.HexBytes `json:"validators_hash"`      // validators for the current block
 	// 下一个块的验证人Hash
 	NextValidatorsHash cmn.HexBytes `json:"next_validators_hash"` // validators for the next block
-	// 当前块的 共识参数
+	// 当前块的 共识参数Hash
 	ConsensusHash      cmn.HexBytes `json:"consensus_hash"`       // consensus params for current block
 	// 在前一个块的txs之后的 state Hash
 	AppHash            cmn.HexBytes `json:"app_hash"`             // state after txs from the previous block
@@ -565,7 +599,7 @@ type Commit struct {
 	// 当前块ID
 	BlockID    BlockID      `json:"block_id"`
 
-	// 这里是一些 precommit 阶段的签名
+	// 这里是一些 precommit 阶段的签名 (commit代表最终提交阶段发的 commit)
 	Precommits []*CommitSig `json:"precommits"`
 
 	// memoized in first call to corresponding method
@@ -680,6 +714,11 @@ func (commit *Commit) IsCommit() bool {
 
 // ValidateBasic performs basic validation that doesn't involve state data.
 // Does not actually check the cryptographic signatures.
+/**
+ValidateBasic:
+执行不涉及 state 数据的基本验证。
+实际上不检查加密签名。
+ */
 func (commit *Commit) ValidateBasic() error {
 	if commit.BlockID.IsZero() {
 		return errors.New("Commit cannot be for nil block")
@@ -687,25 +726,33 @@ func (commit *Commit) ValidateBasic() error {
 	if len(commit.Precommits) == 0 {
 		return errors.New("No precommits in commit")
 	}
+
+	// 从 最终的commit中获取 height 和 round
 	height, round := commit.Height(), commit.Round()
 
 	// Validate the precommits.
+	// 校验 precommit的签名(被投的票)
 	for _, precommit := range commit.Precommits {
 		// It's OK for precommits to be missing.
+		// 假设precommit 丢失是可以的。
 		if precommit == nil {
 			continue
 		}
 		// Ensure that all votes are precommits.
+		// 确保所有投票都是预先提交的。
+		// 确保 Precommits 中单个元素的vote 的类型都是  PrecommitType 的
 		if precommit.Type != PrecommitType {
 			return fmt.Errorf("Invalid commit vote. Expected precommit, got %v",
 				precommit.Type)
 		}
 		// Ensure that all heights are the same.
+		// 确保 vote中记录的所有 height 都一样
 		if precommit.Height != height {
 			return fmt.Errorf("Invalid commit precommit height. Expected %v, got %v",
 				height, precommit.Height)
 		}
 		// Ensure that all rounds are the same.
+		// 确保 vote中记录的round和 当前commit 中记录的round是同一个 (不能乱投vote)
 		if precommit.Round != round {
 			return fmt.Errorf("Invalid commit precommit round. Expected %v, got %v",
 				round, precommit.Round)
@@ -932,9 +979,12 @@ func (blockID BlockID) Key() string {
 // ValidateBasic performs basic validation.
 func (blockID BlockID) ValidateBasic() error {
 	// Hash can be empty in case of POLBlockID in Proposal.
+	// 如果Proposal中的POLBlockID，哈希可以为空。
 	if err := ValidateHash(blockID.Hash); err != nil {
 		return fmt.Errorf("Wrong Hash")
 	}
+
+
 	if err := blockID.PartsHeader.ValidateBasic(); err != nil {
 		return fmt.Errorf("Wrong PartsHeader: %v", err)
 	}

@@ -59,27 +59,48 @@ var peerTimeout = 15 * time.Second // not const so we can override with tests
 	are not at peer limits, we can probably switch to consensus reactor
 */
 
+/**
+一个 Block 池 ？？
+TODO 这个pool 到底干什么的啊
+
+用来做 区块同步用的么？
+有点类似  以太坊的 peerManager
+ */
 type BlockPool struct {
 	cmn.BaseService
 	startTime time.Time
 
 	mtx sync.Mutex
 	// block requests
+	// block 请求
 	requesters map[int64]*bpRequester
+	// 请求者中的最低密钥。??
 	height     int64 // the lowest key in requesters.
 	// peers
+	// 缓存对端peer 实例？
 	peers         map[p2p.ID]*bpPeer
+
+	// 上述map中的peer中的最大的height
 	maxPeerHeight int64 // the biggest reported height
 
 	// atomic
+	// 待分配或块响应的请求数
 	numPending int32 // number of requests pending assignment or block response
 
+	// 单向 发送通道 (用外界创建好的双向通道来 赋值，做到监听)
+	// 接受区块的请求
 	requestsCh chan<- BlockRequest
+	// 接受错误
 	errorsCh   chan<- peerError
 }
 
 // NewBlockPool returns a new BlockPool with the height equal to start. Block
 // requests and errors will be sent to requestsCh and errorsCh accordingly.
+/**
+NewBlockPool:
+返回一个高度等于start的新BlockPool。
+阻止请求和错误将相应地发送到requestsCh和errorsCh。
+ */
 func NewBlockPool(start int64, requestsCh chan<- BlockRequest, errorsCh chan<- peerError) *BlockPool {
 	bp := &BlockPool{
 		peers: make(map[p2p.ID]*bpPeer),
@@ -97,6 +118,10 @@ func NewBlockPool(start int64, requestsCh chan<- BlockRequest, errorsCh chan<- p
 
 // OnStart implements cmn.Service by spawning requesters routine and recording
 // pool's start time.
+/**
+OnStart:
+通过生成 请求 rotine 并记录 pool 的开始时间来实现cmn.Service。
+ */
 func (pool *BlockPool) OnStart() error {
 	go pool.makeRequestersRoutine()
 	pool.startTime = time.Now()
@@ -162,6 +187,8 @@ func (pool *BlockPool) GetStatus() (height int64, numPending int32, lenRequester
 }
 
 // IsCaughtUp returns true if this node is caught up, false - otherwise.
+//
+// 如果当前节点能赶上 链的最新高度
 // TODO: relax conditions, prevent abuse.
 func (pool *BlockPool) IsCaughtUp() bool {
 	pool.mtx.Lock()
@@ -624,6 +651,9 @@ OUTER_LOOP:
 
 //-------------------------------------
 
+// 区块请求，
+// 对端节点的 ID
+// 对端节点链上最高快的高度
 type BlockRequest struct {
 	Height int64
 	PeerID p2p.ID

@@ -42,10 +42,14 @@ func main() {
 	// DefaultNewNode function
 	/**
 	TODO 创建一个 tendermint  节点实例
+	这是一个 func
 	 */
 	nodeFunc := nm.DefaultNewNode
 
 	// Create & start node
+	/**
+	TODO  将 启动节点的func 注册到rootCmd
+	 */
 	rootCmd.AddCommand(cmd.NewRunNodeCmd(nodeFunc))
 
 	cmd := cli.PrepareBaseCmd(rootCmd, "TM", os.ExpandEnv(filepath.Join("$HOME", cfg.DefaultTendermintDir)))
