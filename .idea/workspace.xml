@@ -1,0 +1,1358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b3ebc130-8550-470d-8b02-0976885f2239" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/go-amino/.circleci/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/go-amino/.circleci/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go-amino/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/go-amino/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go-amino/CONTRIBUTING.md" beforeDir="false" afterPath="$PROJECT_DIR$/go-amino/CONTRIBUTING.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go-amino/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/go-amino/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go-amino/amino_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/go-amino/amino_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go-amino/binary_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/go-amino/binary_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go-amino/byteslice_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/go-amino/byteslice_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go-amino/cmd/aminoscan/aminoscan.go" beforeDir="false" afterPath="$PROJECT_DIR$/go-amino/cmd/aminoscan/aminoscan.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go-amino/codec_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/go-amino/codec_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go-amino/deep_copy_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/go-amino/deep_copy_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go-amino/example_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/go-amino/example_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go-amino/json_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/go-amino/json_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go-amino/reflect_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/go-amino/reflect_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go-amino/tests/fuzz/binary/binary.go" beforeDir="false" afterPath="$PROJECT_DIR$/go-amino/tests/fuzz/binary/binary.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go-amino/tests/fuzz/binary/debug/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/go-amino/tests/fuzz/binary/debug/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go-amino/tests/fuzz/binary/init-corpus/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/go-amino/tests/fuzz/binary/init-corpus/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go-amino/tests/fuzz/json/debug/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/go-amino/tests/fuzz/json/debug/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go-amino/tests/fuzz/json/json.go" beforeDir="false" afterPath="$PROJECT_DIR$/go-amino/tests/fuzz/json/json.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go-amino/tests/proto3/proto3_compat_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/go-amino/tests/proto3/proto3_compat_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/.circleci/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/.circleci/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/CONTRIBUTING.md" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/CONTRIBUTING.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/Gopkg.lock" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/Gopkg.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/Gopkg.toml" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/Gopkg.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/basic_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/basic_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/benchmarks/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/benchmarks/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/benchmarks/bench_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/benchmarks/bench_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/benchmarks/results/Ethans-MBP-2717167.txt" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/benchmarks/results/Ethans-MBP-2717167.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/benchmarks/results/aws-c4-large-f6f41ca.txt" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/benchmarks/results/aws-c4-large-f6f41ca.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/benchmarks/results/digital-ocean-2gb-2717167.txt" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/benchmarks/results/digital-ocean-2gb-2717167.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/benchmarks/results/digital-ocean-64gb-fullbench-memory-8f19f23.txt" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/benchmarks/results/digital-ocean-64gb-fullbench-memory-8f19f23.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/benchmarks/results/digital-ocean-64gb-fullbench-memory-c1f6d4e.txt" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/benchmarks/results/digital-ocean-64gb-fullbench-memory-c1f6d4e.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/benchmarks/setup/RUN_BENCHMARKS.sh" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/benchmarks/setup/RUN_BENCHMARKS.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/doc.go" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/doc.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/immutable_tree.go" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/immutable_tree.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/mutable_tree.go" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/mutable_tree.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/node.go" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/node.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/nodedb.go" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/nodedb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/proof.go" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/proof.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/proof_iavl_absence.go" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/proof_iavl_absence.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/proof_iavl_value.go" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/proof_iavl_value.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/proof_path.go" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/proof_path.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/proof_range.go" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/proof_range.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/proof_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/proof_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/testutils_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/testutils_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/tree_dotgraph_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/tree_dotgraph_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/tree_fuzz_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/tree_fuzz_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/tree_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/tree_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iavl/with_gcc_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/iavl/with_gcc_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/.circleci/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/.circleci/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/CONTRIBUTING.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/CONTRIBUTING.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/DOCKER/Dockerfile.abci" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/DOCKER/Dockerfile.abci" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/DOCKER/Dockerfile.develop" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/DOCKER/Dockerfile.develop" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/DOCKER/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/DOCKER/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/Gopkg.lock" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/Gopkg.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/Gopkg.toml" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/Gopkg.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/PHILOSOPHY.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/PHILOSOPHY.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/SECURITY.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/SECURITY.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/UPGRADING.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/UPGRADING.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/client/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/client/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/client/grpc_client.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/client/grpc_client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/client/local_client.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/client/local_client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/client/socket_client.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/client/socket_client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/client/socket_client_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/client/socket_client_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/cmd/abci-cli/abci-cli.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/cmd/abci-cli/abci-cli.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/example/counter/counter.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/example/counter/counter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/example/example_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/example/example_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/example/js/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/example/js/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/example/kvstore/helpers.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/example/kvstore/helpers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/example/kvstore/kvstore.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/example/kvstore/kvstore.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/example/kvstore/kvstore_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/example/kvstore/kvstore_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/example/kvstore/persistent_kvstore.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/example/kvstore/persistent_kvstore.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/server/grpc_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/server/grpc_server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/server/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/server/socket_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/server/socket_server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/tests/benchmarks/parallel/parallel.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/tests/benchmarks/parallel/parallel.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/tests/benchmarks/simple/simple.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/tests/benchmarks/simple/simple.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/tests/client_server_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/tests/client_server_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/tests/server/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/tests/server/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/tests/test_app/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/tests/test_app/app.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/tests/test_app/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/tests/test_app/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/tests/test_app/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/tests/test_app/test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/types/messages_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/types/messages_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/types/protoreplace/protoreplace.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/types/protoreplace/protoreplace.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/types/types.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/types/types.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/types/types.proto" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/types/types.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/types/typespb_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/types/typespb_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/types/util.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/types/util.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/abci/version/version.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/abci/version/version.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/benchmarks/blockchain/localsync.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/benchmarks/blockchain/localsync.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/benchmarks/codec_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/benchmarks/codec_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/benchmarks/map_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/benchmarks/map_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/benchmarks/os_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/benchmarks/os_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/benchmarks/simu/counter.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/benchmarks/simu/counter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/blockchain/pool.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/blockchain/pool.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/blockchain/pool_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/blockchain/pool_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/blockchain/reactor.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/blockchain/reactor.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/blockchain/reactor_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/blockchain/reactor_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/blockchain/store.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/blockchain/store.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/blockchain/store_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/blockchain/store_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/blockchain/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/blockchain/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/cmd/priv_val_server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/cmd/priv_val_server/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/gen_node_key.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/gen_node_key.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/gen_validator.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/gen_validator.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/lite.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/lite.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/probe_upnp.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/probe_upnp.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/replay.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/replay.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/reset_priv_validator.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/reset_priv_validator.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/root.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/root.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/root_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/root_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/run_node.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/run_node.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/show_node_id.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/show_node_id.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/show_validator.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/show_validator.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/testnet.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/testnet.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/version.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/version.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/cmd/tendermint/commands/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/cmd/tendermint/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/cmd/tendermint/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/config/toml.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/config/toml.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/byzantine_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/byzantine_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/common_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/common_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/mempool_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/mempool_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/reactor.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/reactor.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/reactor_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/reactor_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/replay.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/replay.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/replay_file.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/replay_file.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/replay_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/replay_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/state.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/state.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/state_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/state_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/ticker.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/ticker.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/types/height_vote_set.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/types/height_vote_set.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/types/height_vote_set_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/types/height_vote_set_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/types/peer_round_state.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/types/peer_round_state.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/types/round_state.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/types/round_state.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/types/round_state_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/types/round_state_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/types/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/types/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/wal.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/wal.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/wal_generator.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/wal_generator.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/wal_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/wal_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/consensus/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/consensus/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/crypto.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/crypto.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/ed25519/bench_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/ed25519/bench_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/ed25519/ed25519.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/ed25519/ed25519.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/ed25519/ed25519_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/ed25519/ed25519_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/encoding/amino/amino.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/encoding/amino/amino.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/encoding/amino/encode_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/encoding/amino/encode_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/example_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/example_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/internal/benchmarking/bench.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/internal/benchmarking/bench.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/merkle/hash.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/merkle/hash.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/merkle/proof.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/merkle/proof.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/merkle/proof_key_path.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/merkle/proof_key_path.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/merkle/proof_simple_value.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/merkle/proof_simple_value.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/merkle/proof_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/merkle/proof_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/merkle/rfc6962_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/merkle/rfc6962_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/merkle/simple_map.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/merkle/simple_map.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/merkle/simple_proof.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/merkle/simple_proof.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/merkle/simple_tree_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/merkle/simple_tree_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/merkle/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/merkle/types.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/merkle/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/merkle/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/multisig/bitarray/compact_bit_array_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/multisig/bitarray/compact_bit_array_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/multisig/multisignature.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/multisig/multisignature.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/multisig/threshold_pubkey.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/multisig/threshold_pubkey.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/multisig/threshold_pubkey_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/multisig/threshold_pubkey_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/multisig/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/multisig/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/random_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/random_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/secp256k1/bench_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/secp256k1/bench_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/secp256k1/secp256k1.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/secp256k1/secp256k1.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/secp256k1/secp256k1_cgo.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/secp256k1/secp256k1_cgo.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/secp256k1/secp256k1_nocgo.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/secp256k1/secp256k1_nocgo.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/secp256k1/secp256k1_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/secp256k1/secp256k1_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/tmhash/hash_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/tmhash/hash_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/xsalsa20symmetric/symmetric.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/xsalsa20symmetric/symmetric.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/crypto/xsalsa20symmetric/symmetric_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/crypto/xsalsa20symmetric/symmetric_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/DOCS_README.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/DOCS_README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/app-dev/abci-cli.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/app-dev/abci-cli.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/app-dev/abci-spec.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/app-dev/abci-spec.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/app-dev/app-development.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/app-dev/app-development.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/app-dev/ecosystem.json" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/app-dev/ecosystem.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/app-dev/ecosystem.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/app-dev/ecosystem.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/app-dev/getting-started.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/app-dev/getting-started.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/app-dev/subscribing-to-events-via-websocket.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/app-dev/subscribing-to-events-via-websocket.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/architecture/adr-001-logging.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/architecture/adr-001-logging.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/architecture/adr-002-event-subscription.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/architecture/adr-002-event-subscription.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/architecture/adr-009-ABCI-design.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/architecture/adr-009-ABCI-design.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/architecture/adr-010-crypto-changes.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/architecture/adr-010-crypto-changes.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/architecture/adr-011-monitoring.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/architecture/adr-011-monitoring.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/architecture/adr-012-peer-transport.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/architecture/adr-012-peer-transport.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/architecture/adr-018-ABCI-Validators.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/architecture/adr-018-ABCI-Validators.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/architecture/adr-019-multisigs.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/architecture/adr-019-multisigs.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/architecture/adr-020-block-size.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/architecture/adr-020-block-size.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/architecture/adr-021-abci-events.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/architecture/adr-021-abci-events.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/architecture/adr-022-abci-errors.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/architecture/adr-022-abci-errors.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/architecture/adr-023-ABCI-propose-tx.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/architecture/adr-023-ABCI-propose-tx.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/architecture/adr-024-sign-bytes.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/architecture/adr-024-sign-bytes.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/architecture/adr-025-commit.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/architecture/adr-025-commit.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/architecture/adr-029-check-tx-consensus.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/architecture/adr-029-check-tx-consensus.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/architecture/adr-030-consensus-refactor.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/architecture/adr-030-consensus-refactor.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/architecture/adr-033-pubsub.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/architecture/adr-033-pubsub.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/architecture/adr-034-priv-validator-file-structure.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/architecture/adr-034-priv-validator-file-structure.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/interviews/tendermint-bft.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/interviews/tendermint-bft.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/introduction/install.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/introduction/install.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/introduction/introduction.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/introduction/introduction.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/introduction/what-is-tendermint.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/introduction/what-is-tendermint.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/networks/docker-compose.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/networks/docker-compose.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/networks/terraform-and-ansible.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/networks/terraform-and-ansible.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/spec/abci/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/spec/abci/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/spec/abci/abci.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/spec/abci/abci.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/spec/abci/apps.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/spec/abci/apps.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/spec/abci/client-server.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/spec/abci/client-server.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/spec/blockchain/blockchain.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/spec/blockchain/blockchain.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/spec/blockchain/encoding.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/spec/blockchain/encoding.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/spec/blockchain/state.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/spec/blockchain/state.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/spec/consensus/consensus.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/spec/consensus/consensus.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/spec/p2p/connection.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/spec/p2p/connection.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/spec/p2p/node.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/spec/p2p/node.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/spec/p2p/peer.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/spec/p2p/peer.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/spec/reactors/consensus/consensus.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/spec/reactors/consensus/consensus.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/spec/reactors/consensus/proposer-selection.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/spec/reactors/consensus/proposer-selection.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/spec/reactors/evidence/reactor.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/spec/reactors/evidence/reactor.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/spec/reactors/mempool/messages.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/spec/reactors/mempool/messages.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/spec/reactors/mempool/reactor.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/spec/reactors/mempool/reactor.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/spec/reactors/pex/pex.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/spec/reactors/pex/pex.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/spec/reactors/pex/reactor.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/spec/reactors/pex/reactor.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/spec/scripts/crypto.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/spec/scripts/crypto.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/spec/software/wal.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/spec/software/wal.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/tendermint-core/block-structure.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/tendermint-core/block-structure.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/tendermint-core/configuration.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/tendermint-core/configuration.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/tendermint-core/fast-sync.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/tendermint-core/fast-sync.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/tendermint-core/how-to-read-logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/tendermint-core/how-to-read-logs.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/tendermint-core/light-client-protocol.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/tendermint-core/light-client-protocol.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/tendermint-core/rpc.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/tendermint-core/rpc.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/tendermint-core/running-in-production.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/tendermint-core/running-in-production.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/tendermint-core/secure-p2p.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/tendermint-core/secure-p2p.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/tendermint-core/using-tendermint.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/tendermint-core/using-tendermint.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/tools/benchmarking.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/tools/benchmarking.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/tools/monitoring.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/tools/monitoring.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/docs/tools/remote-signer-validation.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/docs/tools/remote-signer-validation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/evidence/pool.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/evidence/pool.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/evidence/pool_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/evidence/pool_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/evidence/reactor.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/evidence/reactor.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/evidence/reactor_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/evidence/reactor_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/evidence/store.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/evidence/store.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/evidence/store_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/evidence/store_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/evidence/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/evidence/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/autofile/autofile.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/autofile/autofile.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/autofile/autofile_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/autofile/autofile_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/autofile/cmd/logjack.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/autofile/cmd/logjack.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/autofile/group.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/autofile/group.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/autofile/group_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/autofile/group_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/bech32/bech32_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/bech32/bech32_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/cli/flags/log_level.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/cli/flags/log_level.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/cli/flags/log_level_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/cli/flags/log_level_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/clist/clist_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/clist/clist_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/common/random.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/common/random.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/common/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/common/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/db/backend_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/db/backend_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/db/c_level_db_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/db/c_level_db_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/db/debug_db.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/db/debug_db.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/db/fsdb.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/db/fsdb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/db/go_level_db.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/db/go_level_db.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/db/go_level_db_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/db/go_level_db_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/db/mem_db.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/db/mem_db.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/db/remotedb/grpcdb/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/db/remotedb/grpcdb/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/db/remotedb/grpcdb/example_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/db/remotedb/grpcdb/example_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/db/remotedb/grpcdb/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/db/remotedb/grpcdb/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/db/remotedb/remotedb.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/db/remotedb/remotedb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/db/remotedb/remotedb_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/db/remotedb/remotedb_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/events/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/events/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/events/events.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/events/events.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/events/events_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/events/events_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/log/filter_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/log/filter_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/log/tm_logger_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/log/tm_logger_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/log/tmfmt_logger_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/log/tmfmt_logger_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/log/tracing_logger_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/log/tracing_logger_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/pubsub/example_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/pubsub/example_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/pubsub/pubsub.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/pubsub/pubsub.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/pubsub/pubsub_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/pubsub/pubsub_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/pubsub/query/empty_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/pubsub/query/empty_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/pubsub/query/fuzz_test/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/pubsub/query/fuzz_test/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/pubsub/query/parser_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/pubsub/query/parser_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/pubsub/query/query_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/pubsub/query/query_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/libs/test/mutate.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/libs/test/mutate.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/base_verifier.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/base_verifier.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/base_verifier_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/base_verifier_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/client/provider.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/client/provider.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/client/provider_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/client/provider_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/commit.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/commit.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/dbprovider.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/dbprovider.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/dynamic_verifier.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/dynamic_verifier.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/dynamic_verifier_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/dynamic_verifier_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/errors/errors.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/errors/errors.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/helpers.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/helpers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/multiprovider.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/multiprovider.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/provider.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/provider.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/provider_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/provider_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/proxy/block.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/proxy/block.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/proxy/errors.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/proxy/errors.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/proxy/proof.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/proxy/proof.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/proxy/proxy.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/proxy/proxy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/proxy/query.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/proxy/query.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/proxy/query_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/proxy/query_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/proxy/validate_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/proxy/validate_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/proxy/verifier.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/proxy/verifier.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/proxy/wrapper.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/proxy/wrapper.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/lite/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/lite/types.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/mempool/bench_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/mempool/bench_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/mempool/cache_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/mempool/cache_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/mempool/mempool.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/mempool/mempool.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/mempool/mempool_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/mempool/mempool_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/mempool/reactor.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/mempool/reactor.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/mempool/reactor_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/mempool/reactor_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/mempool/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/mempool/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/networks/local/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/networks/local/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/networks/remote/integration.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/networks/remote/integration.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/node/id.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/node/id.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/node/node.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/node/node.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/node/node_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/node/node_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/node/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/node/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/base_reactor.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/base_reactor.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/conn/conn_go110.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/conn/conn_go110.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/conn/conn_notgo110.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/conn/conn_notgo110.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/conn/connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/conn/connection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/conn/connection_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/conn/connection_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/conn/secret_connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/conn/secret_connection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/conn/secret_connection_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/conn/secret_connection_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/conn/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/conn/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/fuzz.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/fuzz.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/key.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/key.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/key_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/key_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/mock/peer.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/mock/peer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/netaddress.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/netaddress.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/node_info.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/node_info.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/node_info_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/node_info_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/peer.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/peer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/peer_set_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/peer_set_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/peer_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/peer_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/pex/addrbook.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/pex/addrbook.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/pex/addrbook_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/pex/addrbook_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/pex/errors.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/pex/errors.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/pex/file.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/pex/file.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/pex/known_address.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/pex/known_address.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/pex/pex_reactor.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/pex/pex_reactor.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/pex/pex_reactor_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/pex/pex_reactor_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/pex/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/pex/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/switch.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/switch.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/switch_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/switch_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/test_util.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/test_util.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/transport.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/transport.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/transport_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/transport_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/trust/metric.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/trust/metric.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/trust/store.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/trust/store.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/trust/store_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/trust/store_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/types.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/upnp/probe.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/upnp/probe.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/p2p/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/p2p/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/privval/file.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/privval/file.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/privval/file_deprecated.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/privval/file_deprecated.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/privval/file_deprecated_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/privval/file_deprecated_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/privval/file_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/privval/file_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/privval/messages.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/privval/messages.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/privval/signer_remote.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/privval/signer_remote.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/privval/signer_remote_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/privval/signer_remote_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/privval/signer_service_endpoint.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/privval/signer_service_endpoint.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/privval/signer_validator_endpoint.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/privval/signer_validator_endpoint.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/privval/signer_validator_endpoint_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/privval/signer_validator_endpoint_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/privval/socket_dialers.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/privval/socket_dialers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/privval/socket_dialers_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/privval/socket_dialers_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/privval/socket_listeners.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/privval/socket_listeners.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/privval/socket_listeners_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/privval/socket_listeners_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/privval/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/privval/utils.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/privval/utils_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/privval/utils_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/privval/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/privval/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/proxy/app_conn.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/proxy/app_conn.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/proxy/app_conn_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/proxy/app_conn_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/proxy/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/proxy/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/proxy/multi_app_conn.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/proxy/multi_app_conn.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/proxy/version.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/proxy/version.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/client/event_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/client/event_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/client/helpers.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/client/helpers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/client/helpers_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/client/helpers_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/client/httpclient.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/client/httpclient.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/client/interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/client/interface.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/client/localclient.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/client/localclient.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/client/main_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/client/main_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/client/mock/abci.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/client/mock/abci.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/client/mock/abci_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/client/mock/abci_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/client/mock/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/client/mock/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/client/mock/status.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/client/mock/status.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/client/mock/status_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/client/mock/status_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/client/rpc_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/client/rpc_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/core/abci.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/core/abci.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/core/blocks.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/core/blocks.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/core/consensus.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/core/consensus.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/core/dev.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/core/dev.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/core/doc.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/core/doc.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/core/events.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/core/events.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/core/health.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/core/health.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/core/mempool.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/core/mempool.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/core/net.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/core/net.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/core/pipe.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/core/pipe.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/core/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/core/routes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/core/status.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/core/status.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/core/tx.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/core/tx.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/core/types/responses.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/core/types/responses.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/core/types/responses_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/core/types/responses_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/core/types/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/core/types/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/grpc/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/grpc/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/grpc/client_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/grpc/client_server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/grpc/grpc_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/grpc/grpc_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/grpc/types.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/grpc/types.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/grpc/types.proto" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/grpc/types.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/grpc/typespb_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/grpc/typespb_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/lib/client/args_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/lib/client/args_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/lib/client/http_client.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/lib/client/http_client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/lib/client/integration_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/lib/client/integration_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/lib/client/ws_client.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/lib/client/ws_client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/lib/client/ws_client_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/lib/client/ws_client_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/lib/doc.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/lib/doc.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/lib/rpc_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/lib/rpc_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/lib/server/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/lib/server/handlers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/lib/server/handlers_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/lib/server/handlers_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/lib/server/http_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/lib/server/http_server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/lib/server/http_server_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/lib/server/http_server_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/lib/server/parse_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/lib/server/parse_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/lib/test/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/lib/test/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/lib/types/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/lib/types/types.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/lib/types/types_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/lib/types/types_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/rpc/test/helpers.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/rpc/test/helpers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/scripts/dist.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/scripts/dist.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/scripts/get_tools.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/scripts/get_tools.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/scripts/install/install_tendermint_arm.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/scripts/install/install_tendermint_arm.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/scripts/install/install_tendermint_bsd.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/scripts/install/install_tendermint_bsd.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/scripts/install/install_tendermint_osx.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/scripts/install/install_tendermint_osx.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/scripts/install/install_tendermint_ubuntu.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/scripts/install/install_tendermint_ubuntu.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/scripts/json2wal/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/scripts/json2wal/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/scripts/linkify_changelog.py" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/scripts/linkify_changelog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/scripts/privValUpgrade.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/scripts/privValUpgrade.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/scripts/privValUpgrade_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/scripts/privValUpgrade_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/scripts/release.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/scripts/release.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/scripts/wal2json/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/scripts/wal2json/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/state/execution.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/state/execution.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/state/execution_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/state/execution_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/state/services.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/state/services.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/state/state.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/state/state.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/state/state_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/state/state_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/state/store.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/state/store.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/state/tx_filter.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/state/tx_filter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/state/tx_filter_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/state/tx_filter_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/state/txindex/indexer.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/state/txindex/indexer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/state/txindex/indexer_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/state/txindex/indexer_service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/state/txindex/indexer_service_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/state/txindex/indexer_service_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/state/txindex/kv/kv.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/state/txindex/kv/kv.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/state/txindex/kv/kv_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/state/txindex/kv/kv_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/state/txindex/kv/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/state/txindex/kv/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/state/txindex/null/null.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/state/txindex/null/null.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/state/validation.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/state/validation.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/state/validation_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/state/validation_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/state/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/state/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/test/app/grpc_client.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/test/app/grpc_client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/test/app/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/test/app/test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/test/p2p/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/test/p2p/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/test/p2p/client.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/test/p2p/client.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/test/p2p/fast_sync/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/test/p2p/fast_sync/test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/test/p2p/ip_plus_id.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/test/p2p/ip_plus_id.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/test/p2p/kill_all/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/test/p2p/kill_all/test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/test/p2p/local_testnet_start.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/test/p2p/local_testnet_start.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/test/p2p/peer.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/test/p2p/peer.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/test/p2p/persistent_peers.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/test/p2p/persistent_peers.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/test/p2p/pex/dial_peers.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/test/p2p/pex/dial_peers.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/test/p2p/pex/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/test/p2p/pex/test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/test/p2p/pex/test_addrbook.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/test/p2p/pex/test_addrbook.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/test/p2p/pex/test_dial_peers.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/test/p2p/pex/test_dial_peers.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/test/p2p/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/test/p2p/test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/test/test_cover.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/test/test_cover.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/mintnet-kubernetes/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/mintnet-kubernetes/README.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/mintnet-kubernetes/app.template.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/mintnet-kubernetes/app.template.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/mintnet-kubernetes/examples/basecoin/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/mintnet-kubernetes/examples/basecoin/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/mintnet-kubernetes/examples/counter/app.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/mintnet-kubernetes/examples/counter/app.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-bench/Dockerfile.dev" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-bench/Dockerfile.dev" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-bench/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-bench/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-bench/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-bench/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-bench/statistics.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-bench/statistics.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-bench/transacter.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-bench/transacter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-monitor/Dockerfile.dev" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-monitor/Dockerfile.dev" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-monitor/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-monitor/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-monitor/eventmeter/eventmeter.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-monitor/eventmeter/eventmeter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-monitor/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-monitor/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-monitor/mock/eventmeter.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-monitor/mock/eventmeter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-monitor/monitor/monitor.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-monitor/monitor/monitor.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-monitor/monitor/monitor_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-monitor/monitor/monitor_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-monitor/monitor/network.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-monitor/monitor/network.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-monitor/monitor/network_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-monitor/monitor/network_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-monitor/monitor/node.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-monitor/monitor/node.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-monitor/monitor/node_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-monitor/monitor/node_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-monitor/monitor/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-monitor/monitor/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-monitor/rpc.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-monitor/rpc.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-monitor/ton.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-monitor/ton.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-monitor/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-monitor/wire.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-signer-harness/internal/test_harness.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-signer-harness/internal/test_harness.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-signer-harness/internal/test_harness_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-signer-harness/internal/test_harness_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/tools/tm-signer-harness/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/tools/tm-signer-harness/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/block.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/block.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/block_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/block_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/canonical.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/canonical.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/encoding_helper.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/encoding_helper.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/event_bus.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/event_bus.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/event_bus_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/event_bus_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/events.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/events.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/evidence.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/evidence.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/evidence_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/evidence_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/genesis.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/genesis.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/genesis_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/genesis_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/params.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/params.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/params_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/params_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/part_set.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/part_set.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/part_set_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/part_set_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/priv_validator.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/priv_validator.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/proposal.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/proposal.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/proposal_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/proposal_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/proto3_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/proto3_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/protobuf.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/protobuf.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/protobuf_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/protobuf_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/results.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/results.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/results_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/results_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/signable.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/signable.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/test_util.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/test_util.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/time/time.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/time/time.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/tx.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/tx.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/tx_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/tx_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/validation.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/validation.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/validator.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/validator.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/validator_set.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/validator_set.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/validator_set_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/validator_set_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/vote.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/vote.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/vote_set.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/vote_set.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/vote_set_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/vote_set_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/vote_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/vote_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tendermint/types/wire.go" beforeDir="false" afterPath="$PROJECT_DIR$/tendermint/types/wire.go" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cmd/tendermint/main.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="45" column="25" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
+              <folding>
+                <element signature="e#14#217#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node/node.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="637">
+              <caret line="302" column="22" selection-start-line="302" selection-start-column="22" selection-end-line="302" selection-end-column="22" />
+              <folding>
+                <element signature="e#14#1382#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libs/db/db.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="44" column="5" lean-forward="true" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/blockchain/store.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="38" column="40" lean-forward="true" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/consensus/reactor.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="534">
+              <caret line="109" column="21" selection-start-line="109" selection-start-column="21" selection-end-line="109" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/consensus/state.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="628">
+              <caret line="1004" column="35" selection-start-line="1004" selection-start-column="35" selection-end-line="1004" selection-end-column="35" />
+              <folding>
+                <element signature="e#19#525#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/consensus/types/round_state.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="613">
+              <caret line="120" column="13" selection-start-line="120" selection-start-column="13" selection-end-line="120" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/consensus/types/height_vote_set.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="292">
+              <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/types/proposal.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="621">
+              <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/types/signed_msg_type.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/types/vote_set.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="292">
+              <caret line="53" column="5" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/state/state.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="624">
+              <caret line="173" column="23" selection-start-line="173" selection-start-column="23" selection-end-line="173" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/types/block.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="219" column="16" selection-start-line="219" selection-start-column="16" selection-end-line="219" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/types/vote.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="309">
+              <caret line="46" column="25" lean-forward="true" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/crypto/crypto.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/types/evidence.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="309">
+              <caret line="277" column="5" selection-start-line="277" selection-start-column="5" selection-end-line="277" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/types/part_set.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="84" column="5" selection-start-line="84" selection-start-column="5" selection-end-line="84" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/proxy/client.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1215">
+              <caret line="88" column="1" lean-forward="true" selection-start-line="88" selection-start-column="1" selection-end-line="88" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/types/protobuf.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="309">
+              <caret line="184" column="4" selection-start-line="184" selection-start-column="4" selection-end-line="184" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/state/execution.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="532">
+              <caret line="101" column="28" selection-start-line="101" selection-start-column="28" selection-end-line="101" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/state/store.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="373">
+              <caret line="63" column="28" lean-forward="true" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libs/db/remotedb/remotedb.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="333">
+              <caret line="63" column="26" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/types/priv_validator.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cmd/tendermint/commands/run_node.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="318">
+              <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>github.com/tendermint</find>
+      <find>deadlock</find>
+      <find>SetSync</find>
+      <find>NewLocalClientCreator</find>
+      <find>DefaultDBProvider</find>
+      <find>stateKey</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>my-tendermint</replace>
+      <replace>sync</replace>
+    </replaceStrings>
+  </component>
+  <component name="GOROOT" path="$USER_HOME$/go-sdk/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/go-amino" />
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="false" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/node/id.go" />
+        <option value="$PROJECT_DIR$/evidence/pool.go" />
+        <option value="$PROJECT_DIR$/consensus/reactor.go" />
+        <option value="$PROJECT_DIR$/state/store.go" />
+        <option value="$PROJECT_DIR$/cmd/tendermint/main.go" />
+        <option value="$PROJECT_DIR$/consensus/replay.go" />
+        <option value="$PROJECT_DIR$/proxy/client.go" />
+        <option value="$PROJECT_DIR$/blockchain/store.go" />
+        <option value="$PROJECT_DIR$/libs/db/db.go" />
+        <option value="$PROJECT_DIR$/node/node.go" />
+        <option value="$PROJECT_DIR$/abci/example/kvstore/kvstore.go" />
+        <option value="$PROJECT_DIR$/state/state.go" />
+        <option value="$PROJECT_DIR$/types/block.go" />
+        <option value="$PROJECT_DIR$/types/signed_msg_type.go" />
+        <option value="$PROJECT_DIR$/types/proposal.go" />
+        <option value="$PROJECT_DIR$/consensus/types/height_vote_set.go" />
+        <option value="$PROJECT_DIR$/consensus/types/round_state.go" />
+        <option value="$PROJECT_DIR$/consensus/state.go" />
+        <option value="$PROJECT_DIR$/state/execution.go" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="65" />
+    <option name="y" value="-4" />
+    <option name="width" value="1855" />
+    <option name="height" value="1084" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="tendermint" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tendermint" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tendermint" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tendermint" type="462c0819:PsiDirectoryNode" />
+              <item name="cmd" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tendermint" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tendermint" type="462c0819:PsiDirectoryNode" />
+              <item name="cmd" type="462c0819:PsiDirectoryNode" />
+              <item name="tendermint" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tendermint" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tendermint" type="462c0819:PsiDirectoryNode" />
+              <item name="consensus" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tendermint" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tendermint" type="462c0819:PsiDirectoryNode" />
+              <item name="proxy" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.gopath.indexing.explicitly.defined" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../github.com/tendermint/tendermint" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Favorites" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.2498618" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32925585" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="make" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.2498618" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="1" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="4" />
+      <window_info anchor="bottom" id="Message" order="5" />
+      <window_info anchor="bottom" id="Find" order="6" weight="0.32925585" />
+      <window_info anchor="bottom" id="Run" order="7" />
+      <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="11" />
+      <window_info anchor="right" id="make" order="0" />
+      <window_info anchor="right" id="Database" order="1" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="2" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/consensus/state.go</url>
+          <line>978</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/tendermint/consensus/state.go</url>
+          <line>963</line>
+          <properties />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/tendermint/consensus/state.go</url>
+          <line>964</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/consensus/replay.go</url>
+          <line>319</line>
+          <properties />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/node/node.go</url>
+          <line>292</line>
+          <properties />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/node/id.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+          <folding>
+            <element signature="e#14#76#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mempool/mempool.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-336">
+          <caret line="41" column="2" lean-forward="true" selection-start-line="41" selection-start-column="2" selection-end-line="41" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evidence/reactor.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tendermint/libs/db/c_level_db_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+          <folding>
+            <element signature="e#27#154#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/consensus/ticker.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="30" column="27" lean-forward="true" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evidence/pool.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+          <folding>
+            <element signature="e#18#238#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmd/tendermint/commands/gen_validator.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="19" column="23" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+          <folding>
+            <element signature="e#18#99#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/privval/file.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="582">
+          <caret line="157" column="5" lean-forward="true" selection-start-line="157" selection-start-column="5" selection-end-line="157" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iavl/doc.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-103" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iavl/proof.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="e#14#153#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iavl/node.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rpc/core/status.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="73" column="8" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rpc/client/mock/client.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1392">
+          <caret line="79" column="16" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmd/tendermint/commands/show_node_id.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmd/tendermint/commands/replay.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tendermint/libs/db/remotedb/remotedb.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="17" column="34" lean-forward="true" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+          <folding>
+            <element signature="e#18#194#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tendermint/libs/db/debug_db.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/state/services.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1653" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmd/tendermint/commands/run_node.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tendermint/node/node.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3426">
+          <caret line="208" column="21" selection-start-line="208" selection-start-column="21" selection-end-line="208" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/db/remotedb/proto/defs.pb.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="418" column="18" selection-start-line="418" selection-start-column="18" selection-end-line="418" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/db/remotedb/remotedb.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="63" column="26" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tendermint/consensus/state.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="e#19#525#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/types/priv_validator.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmd/tendermint/main.go.bak">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmd/tendermint/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="45" column="25" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
+          <folding>
+            <element signature="e#14#217#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/consensus/reactor.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="534">
+          <caret line="109" column="21" selection-start-line="109" selection-start-column="21" selection-end-line="109" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/types/protobuf.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="184" column="4" selection-start-line="184" selection-start-column="4" selection-end-line="184" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proxy/client.go.bak">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/consensus/replay.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="477" column="27" selection-start-line="477" selection-start-column="27" selection-end-line="477" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proxy/client.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1215">
+          <caret line="88" column="1" lean-forward="true" selection-start-line="88" selection-start-column="1" selection-end-line="88" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blockchain/store.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="38" column="40" lean-forward="true" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/db/db.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="44" column="5" lean-forward="true" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node/node.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="637">
+          <caret line="302" column="22" selection-start-line="302" selection-start-column="22" selection-end-line="302" selection-end-column="22" />
+          <folding>
+            <element signature="e#14#1382#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/state/store.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="63" column="28" lean-forward="true" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/abci/example/kvstore/kvstore.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="32" column="1" lean-forward="true" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../go-amino/amino.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="222" column="27" selection-start-line="222" selection-start-column="27" selection-end-line="222" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/types/evidence.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="277" column="5" selection-start-line="277" selection-start-column="5" selection-end-line="277" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crypto/crypto.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/types/vote.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="46" column="25" lean-forward="true" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/types/block.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="219" column="16" selection-start-line="219" selection-start-column="16" selection-end-line="219" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/state/state.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="173" column="23" selection-start-line="173" selection-start-column="23" selection-end-line="173" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/types/signed_msg_type.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/types/proposal.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/types/part_set.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="84" column="5" selection-start-line="84" selection-start-column="5" selection-end-line="84" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/consensus/types/height_vote_set.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/types/vote_set.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="53" column="5" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/consensus/types/round_state.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="613">
+          <caret line="120" column="13" selection-start-line="120" selection-start-column="13" selection-end-line="120" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/consensus/state.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="628">
+          <caret line="1004" column="35" selection-start-line="1004" selection-start-column="35" selection-end-line="1004" selection-end-column="35" />
+          <folding>
+            <element signature="e#19#525#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/state/execution.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="101" column="28" selection-start-line="101" selection-start-column="28" selection-end-line="101" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

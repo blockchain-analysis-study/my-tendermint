@@ -1,0 +1,1 @@
+See the [consensus spec](https://my-tendermint/tendermint/tree/master/docs/spec/consensus) and the [reactor consensus spec](https://my-tendermint/tendermint/tree/master/docs/spec/reactors/consensus) for more information.

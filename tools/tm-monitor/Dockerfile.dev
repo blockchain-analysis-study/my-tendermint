@@ -1,0 +1,12 @@
+FROM golang:latest
+
+RUN mkdir -p /go/src/my-tendermint/tools/tm-monitor
+WORKDIR /go/src/my-tendermint/tools/tm-monitor
+
+COPY Makefile /go/src/my-tendermint/tools/tm-monitor/
+
+RUN make get_tools
+
+COPY . /go/src/my-tendermint/tools/tm-monitor
+
+RUN make get_vendor_deps
