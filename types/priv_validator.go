@@ -11,6 +11,10 @@ import (
 
 // PrivValidator defines the functionality of a local Tendermint validator
 // that signs votes and proposals, and never double signs.
+/**
+PrivValidator:
+定义了签署 votes 和 proposals 的本地Tendermint验证器(这里不是验证人)的功能，而不是双重签名。
+ */
 type PrivValidator interface {
 	GetPubKey() crypto.PubKey
 

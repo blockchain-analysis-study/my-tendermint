@@ -234,6 +234,11 @@ func NewMempool(
 // EnableTxsAvailable initializes the TxsAvailable channel,
 // ensuring it will trigger once every height when transactions are available.
 // NOTE: not thread safe - should only be called once, on startup
+/**
+EnableTxsAvailable:
+初始化TxsAvailable通道，确保在 tx 可用时每个高度触发一次。
+注意：不是线程安全的 - 只应在启动时调用一次
+ */
 func (mem *Mempool) EnableTxsAvailable() {
 	mem.txsAvailable = make(chan struct{}, 1)
 }

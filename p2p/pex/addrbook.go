@@ -101,6 +101,10 @@ type addrBook struct {
 
 // NewAddrBook creates a new address book.
 // Use Start to begin processing asynchronous address updates.
+/**
+NewAddrBook创建一个新的地址簿。
+使用“开始”开始处理异步地址更新。
+ */
 func NewAddrBook(filePath string, routabilityStrict bool) *addrBook {
 	am := &addrBook{
 		rand:              cmn.NewRand(),

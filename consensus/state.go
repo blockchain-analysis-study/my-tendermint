@@ -71,67 +71,105 @@ type evidencePool interface {
 // It processes votes and proposals, and upon reaching agreement,
 // commits blocks to the chain and executes them against the application.
 // The internal state machine receives input from peers, the internal validator, and from a timer.
+/**
+TODO 超级重要
+[共识state]
+ConsensusState处理一致性算法的执行。
+它处理 votes 和 proposals，并在达成协议后，向 blockchain 提交 block 并针对应用程序执行它们。
+内部状态机接收来自 peer ，内部验证器和计时器的输入。
+ */
 type ConsensusState struct {
+	// 继承基础服务？
+	// 里面就是一些 stop啊 之类的信号字段
 	cmn.BaseService
 
 	// config details
+	// 配置信息
 	config        *cfg.ConsensusConfig
-	privValidator types.PrivValidator // for signing votes
+	// 一个 签署 votes 和 proposals 的本地Tendermint验证器
+	privValidator types.PrivValidator // for signing votes  为了签名投票用的
 
 	// store blocks and commits
+	// 存储实例： 存储 block 和 commit的
 	blockStore sm.BlockStore
 
 	// create and execute blocks
+	// block的执行器
 	blockExec *sm.BlockExecutor
 
 	// notify us if txs are available
+	// 通知我们 tx 是否可用 (TODO 其实这里就是 mempool 实例
 	txNotifier txNotifier
 
 	// add evidence to the pool
 	// when it's detected
+	/**
+	[凭证池]
+	向 pool 中添加 凭证
+	当它被检测到
+	 */
 	evpool evidencePool
 
 	// internal state
 	mtx sync.RWMutex
+	/**
+	[轮次state]
+	 */
 	cstypes.RoundState
+	/**
+	block的state (state/state.go 那个)
+	 */
 	state sm.State // State until height-1.
 
 	// state changes may be triggered by: msgs from peers,
 	// msgs from ourself, or by timeouts
-	peerMsgQueue     chan msgInfo
-	internalMsgQueue chan msgInfo
-	timeoutTicker    TimeoutTicker
+	// state 更改可能由以下内容触发：来自 peers 方的消息，来自自己的消息或超时
+	// 就是一些类似  监听的事件通道
+	peerMsgQueue     chan msgInfo // 接受对端的消息
+	internalMsgQueue chan msgInfo // 接受自己本地消息
+	timeoutTicker    TimeoutTicker // 超时打孔机
 
 	// information about about added votes and block parts are written on this channel
 	// so statistics can be computed by reactor
+	// 有关添加的投票和块部分的信息写在此通道上，因此可以通过reactor计算统计数据
 	statsMsgQueue chan msgInfo
 
 	// we use eventBus to trigger msg broadcasts in the reactor,
 	// and to notify external subscribers, eg. through a websocket
+	// 我们使用eventBus来触发反应堆中的msg广播，并通知外部订户，例如。 通过websocket
 	eventBus *types.EventBus
 
 	// a Write-Ahead Log ensures we can recover from any kind of crash
 	// and helps us avoid signing conflicting votes
+	// 预写日志记录器，确保我们可以从任何类型的崩溃中恢复，并帮助我们避免签署冲突的投票
 	wal          WAL
+	// 所以我们不会在重放期间记录签名错误
 	replayMode   bool // so we don't log signing errors during replay
+	// 确定我们是否尝试赶上 ?? 啥东西啊
 	doWALCatchup bool // determines if we even try to do the catchup
 
 	// for tests where we want to limit the number of transitions the state makes
+	// 对于我们想要限制状态转换次数的测试
 	nSteps int
 
-	// some functions can be overwritten for testing
+	// catchupsome functions can be overwritten for testing
+	// 可以覆盖catchupsome函数进行测试
+	// 某些测试 hook 函数？？
 	decideProposal func(height int64, round int)
 	doPrevote      func(height int64, round int)
 	setProposal    func(proposal *types.Proposal) error
 
 	// closed when we finish shutting down
+	// 关闭信号通道，当节点退出时用到
 	done chan struct{}
 
 	// synchronous pubsub between consensus state and reactor.
 	// state only emits EventNewRoundStep and EventVote
+	// 共识状态和反应堆之间的同步pubsub。 state仅发出EventNewRoundStep和EventVote
 	evsw tmevents.EventSwitch
 
 	// for reporting metrics
+	// 用于报告指标（统计用）
 	metrics *Metrics
 }
 

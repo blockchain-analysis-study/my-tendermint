@@ -96,6 +96,8 @@ func ConnDuplicateIPFilter() ConnFilterFunc {
 type MultiplexTransportOption func(*MultiplexTransport)
 
 // MultiplexTransportConnFilters sets the filters for rejection new connections.
+// MultiplexTransportConnFilters:
+// 设置拒绝新连接的过滤器。
 func MultiplexTransportConnFilters(
 	filters ...ConnFilterFunc,
 ) MultiplexTransportOption {
@@ -147,6 +149,8 @@ var _ Transport = (*MultiplexTransport)(nil)
 var _ transportLifecycle = (*MultiplexTransport)(nil)
 
 // NewMultiplexTransport returns a tcp connected multiplexed peer.
+// NewMultiplexTransport:
+// 返回一个连接tcp的多路复用 peer 。
 func NewMultiplexTransport(
 	nodeInfo NodeInfo,
 	nodeKey NodeKey,

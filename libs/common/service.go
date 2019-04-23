@@ -106,6 +106,7 @@ type BaseService struct {
 }
 
 // NewBaseService creates a new BaseService.
+// NewBaseService创建一个新的BaseService。
 func NewBaseService(logger log.Logger, name string, impl Service) *BaseService {
 	if logger == nil {
 		logger = log.NewNopLogger()

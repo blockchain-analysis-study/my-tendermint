@@ -52,8 +52,10 @@ func RegisterWALMessages(cdc *amino.Codec) {
 
 //--------------------------------------------------------
 // Simple write-ahead logger
-
+// 简单的预写记录器
+//
 // WAL is an interface for any write-ahead logger.
+// WAL是任何预写记录器的接口。
 type WAL interface {
 	Write(WALMessage)
 	WriteSync(WALMessage)

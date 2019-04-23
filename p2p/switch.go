@@ -29,6 +29,8 @@ const (
 
 // MConnConfig returns an MConnConfig with fields updated
 // from the P2PConfig.
+// MConnConfig:
+// 返回一个MConnConfig，其中包含从P2PConfig更新的字段。
 func MConnConfig(cfg *config.P2PConfig) conn.MConnConfig {
 	mConfig := conn.DefaultMConnConfig()
 	mConfig.FlushThrottle = cfg.FlushThrottleTimeout
@@ -132,6 +134,8 @@ func SwitchFilterTimeout(timeout time.Duration) SwitchOption {
 }
 
 // SwitchPeerFilters sets the filters for rejection of new peers.
+// SwitchPeerFilters:
+// 设置拒绝新 peers 的过滤器。
 func SwitchPeerFilters(filters ...PeerFilterFunc) SwitchOption {
 	return func(sw *Switch) { sw.peerFilters = filters }
 }

@@ -212,8 +212,17 @@ func (bcR *BlockchainReactor) Receive(chID byte, src p2p.Peer, msgBytes []byte) 
 
 // Handle messages from the poolReactor telling the reactor what to do.
 // NOTE: Don't sleep in the FOR_LOOP or otherwise slow it down!
+/**
+TODO 超级重要
+交易执行入口？
+处理来自poolReactor的消息，告诉reactor如何做。
+注意：不要在FOR_LOOP中睡觉或以其他方式减速！
+ */
 func (bcR *BlockchainReactor) poolRoutine() {
 
+	/**
+	某些 tick 打孔器
+	 */
 	trySyncTicker := time.NewTicker(trySyncIntervalMS * time.Millisecond)
 	statusUpdateTicker := time.NewTicker(statusUpdateIntervalSeconds * time.Second)
 	switchToConsensusTicker := time.NewTicker(switchToConsensusIntervalSeconds * time.Second)

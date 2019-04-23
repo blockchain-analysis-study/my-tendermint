@@ -90,6 +90,7 @@ func (rs RoundStepType) String() string {
 // of the cs.receiveRoutine
 /**
 TODO 重要
+[轮次state]
 RoundState定义了内部共识状态。
 注意：不是线程安全的。 只应由下游功能操纵
 cs.receiveRoutine

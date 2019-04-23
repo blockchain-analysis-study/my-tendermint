@@ -109,6 +109,9 @@ func DefaultNewNode(config *cfg.Config, logger log.Logger) (*Node, error) {
 		oldPV.Upgrade(newPrivValKey, newPrivValState)
 	}
 
+	/**
+	创建一个 tendermint 节点
+	 */
 	return NewNode(config,
 		privval.LoadOrGenFilePV(newPrivValKey, newPrivValState),
 		nodeKey,
@@ -183,13 +186,18 @@ type Node struct {
 TODO 注意： 如果是 cosmos-sdk 调用的话，最终会在 startInProcess 中调用该方法，生成一个 tendermint node
  */
 func NewNode(config *cfg.Config,
+	// 一个可以签署 votes 和 proposals 的本地Tendermint验证器
 	privValidator types.PrivValidator,
+	// 节点的 nodeKey
 	nodeKey *p2p.NodeKey,
+	// client的创建器
 	clientCreator proxy.ClientCreator,
+	// 创世文件的 生产函数
 	genesisDocProvider GenesisDocProvider,
 
 	// 如果是 cosmos-sdk 的话，这里会是： node.DefaultDBProvider
 	dbProvider DBProvider,
+	// 统计用的
 	metricsProvider MetricsProvider,
 	logger log.Logger) (*Node, error) {
 
@@ -235,8 +243,12 @@ func NewNode(config *cfg.Config,
 	}
 
 	// Create the proxyApp and establish connections to the ABCI app (consensus, mempool, query).
+	/**
+	创建proxyApp并建立与ABCI应用程序的连接（共识，mempool，查询）。
+	 */
 	proxyApp := proxy.NewAppConns(clientCreator)
 	proxyApp.SetLogger(logger.With("module", "proxy"))
+	// 启动这个 proxyApp (a tendermint client)
 	if err := proxyApp.Start(); err != nil {
 		return nil, fmt.Errorf("Error starting proxy app connections: %v", err)
 	}
@@ -245,15 +257,23 @@ func NewNode(config *cfg.Config,
 	// we might need to index the txs of the replayed block as this might not have happened
 	// when the node stopped last time (i.e. the node stopped after it saved the block
 	// but before it indexed the txs, or, endblocker panicked)
+	/**
+	todo : 必须在 handshake 之前启动EventBus和IndexerService，
+	因为我们可能需要索引重放块的txs，
+	因为当节点上次停止时可能没有发生这种情况
+	（即节点在保存块之后但在索引tx之前停止， 或者，endblocker 发生了 panic）
+	 */
 	eventBus := types.NewEventBus()
 	eventBus.SetLogger(logger.With("module", "events"))
 
+	// 启动 事件 bus
 	err = eventBus.Start()
 	if err != nil {
 		return nil, err
 	}
 
 	// Transaction indexing
+	// tx的 索引器 ??
 	var txIndexer txindex.TxIndexer
 	switch config.TxIndex.Indexer {
 	case "kv":
@@ -272,6 +292,9 @@ func NewNode(config *cfg.Config,
 		txIndexer = &null.TxIndex{}
 	}
 
+	/**
+	索引服务
+	 */
 	indexerService := txindex.NewIndexerService(txIndexer, eventBus)
 	indexerService.SetLogger(logger.With("module", "txindex"))
 
@@ -282,6 +305,10 @@ func NewNode(config *cfg.Config,
 
 	// Create the handshaker, which calls RequestInfo, sets the AppVersion on the state,
 	// and replays any blocks as necessary to sync tendermint with the app.
+	/**
+	创建调用RequestInfo的握手，在状态上设置AppVersion，
+	并根据需要重放任何块以与应用程序同步tendermint。
+	 */
 	consensusLogger := logger.With("module", "consensus")
 	handshaker := cs.NewHandshaker(stateDB, state, blockStore, genDoc)
 	handshaker.SetLogger(consensusLogger)
@@ -310,6 +337,7 @@ func NewNode(config *cfg.Config,
 	)
 
 	// If the state and software differ in block version, at least log it.
+	// 如果state和软件的block版本不同，请至少记录它。记录下日志
 	if state.Version.Consensus.Block != version.BlockProtocol {
 		logger.Info("Software and state have different block protocols",
 			"software", version.BlockProtocol,
@@ -317,10 +345,14 @@ func NewNode(config *cfg.Config,
 		)
 	}
 
+	//
 	if config.PrivValidatorListenAddr != "" {
 		// If an address is provided, listen on the socket for a connection from an
 		// external signing process.
+		//
+		// 如果提供了地址，请在套接字上侦听来自外部签名过程的连接。
 		// FIXME: we should start services inside OnStart
+		// FIXME：我们应该在OnStart中启动服务
 		privValidator, err = createAndStartPrivValidatorSocketClient(config.PrivValidatorListenAddr, logger)
 		if err != nil {
 			return nil, errors.Wrap(err, "Error with private validator socket client")
@@ -342,20 +374,28 @@ func NewNode(config *cfg.Config,
 		}
 	}
 
+	/**
+	获取当前节点公钥
+	 */
 	pubKey := privValidator.GetPubKey()
 	addr := pubKey.Address()
 	// Log whether this node is a validator or an observer
 	// Log（打印日志） whether this node is a validator or an observer（观察者）
 	if state.Validators.HasAddress(addr) {
+		// 当前节点的pubkey 是当前验证人
 		consensusLogger.Info("This node is a validator", "addr", addr, "pubKey", pubKey)
 	} else {
+		// 当前节点的pubkey 不是当前验证人
 		consensusLogger.Info("This node is not a validator", "addr", addr, "pubKey", pubKey)
 	}
 
+	// 创建各种 统计生产器
 	csMetrics, p2pMetrics, memplMetrics, smMetrics := metricsProvider(genDoc.ChainID)
 
 	// Make MempoolReactor
-	// 创建交易池
+	/**
+	创建交易池
+	 */
 	mempool := mempl.NewMempool(
 		config.Mempool,
 		proxyApp.Mempool(),
@@ -364,20 +404,29 @@ func NewNode(config *cfg.Config,
 		mempl.WithPreCheck(sm.TxPreCheck(state)),
 		mempl.WithPostCheck(sm.TxPostCheck(state)),
 	)
+
+	// 交易池相关的logger
 	mempoolLogger := logger.With("module", "mempool")
 	mempool.SetLogger(mempoolLogger)
 	if config.Mempool.WalEnabled() {
 		mempool.InitWAL() // no need to have the mempool wal during tests
 	}
+
+	/**
+	根绝交易池和配置项创建 交易反应器
+	 */
 	mempoolReactor := mempl.NewMempoolReactor(config.Mempool, mempool)
 	mempoolReactor.SetLogger(mempoolLogger)
 
+	// 确保实时 监听交易池的可用tx
 	if config.Consensus.WaitForTxs() {
 		mempool.EnableTxsAvailable()
 	}
 
 	// Make Evidence Reactor
-	// 创建 治理反应器
+	/**
+	创建 凭证反应器 (跨链用 ??)
+	 */
 	evidenceDB, err := dbProvider(&DBContext{"evidence", config})
 	if err != nil {
 		return nil, err
@@ -385,12 +434,16 @@ func NewNode(config *cfg.Config,
 	evidenceLogger := logger.With("module", "evidence")
 	evidencePool := evidence.NewEvidencePool(stateDB, evidenceDB)
 	evidencePool.SetLogger(evidenceLogger)
+	//
 	evidenceReactor := evidence.NewEvidenceReactor(evidencePool)
 	evidenceReactor.SetLogger(evidenceLogger)
 
 	blockExecLogger := logger.With("module", "state")
 	// make block executor for consensus and blockchain reactors to execute blocks
-	// 使块执行器达成共识，并使区块链反应器执行块
+	/**
+	初始化 区块执行器
+	使块执行器达成共识，并使区块链反应器执行块
+	 */
 	blockExec := sm.NewBlockExecutor(
 		stateDB,
 		blockExecLogger,
@@ -401,12 +454,16 @@ func NewNode(config *cfg.Config,
 	)
 
 	// Make BlockchainReactor
-	// 创建 链反应器
+	/**
+	创建 链反应器
+	 */
 	bcReactor := bc.NewBlockchainReactor(state.Copy(), blockExec, blockStore, fastSync)
 	bcReactor.SetLogger(logger.With("module", "blockchain"))
 
 	// Make ConsensusReactor
-	// 创建共识 state
+	/**
+	创建共识 state
+	 */
 	consensusState := cs.NewConsensusState(
 		config.Consensus,
 		state.Copy(),
@@ -421,7 +478,9 @@ func NewNode(config *cfg.Config,
 		consensusState.SetPrivValidator(privValidator)
 	}
 
-	// 创建共识 反应器
+	/**
+	创建共识 反应器
+	 */
 	consensusReactor := cs.NewConsensusReactor(consensusState, fastSync, cs.ReactorMetrics(csMetrics))
 	consensusReactor.SetLogger(consensusLogger)
 
@@ -430,6 +489,10 @@ func NewNode(config *cfg.Config,
 	consensusReactor.SetEventBus(eventBus)
 
 	p2pLogger := logger.With("module", "p2p")
+
+	/**
+	创建一个 node 的基础信息
+	 */
 	nodeInfo, err := makeNodeInfo(
 		config,
 		nodeKey.ID(),
@@ -446,20 +509,33 @@ func NewNode(config *cfg.Config,
 	}
 
 	// Setup Transport.
+	// 设置 传输 相关
 	var (
+		// MConnConfig返回一个MConnConfig，其中包含从P2PConfig更新的字段。
 		mConnConfig = p2p.MConnConfig(config.P2P)
+		// NewMultiplexTransport返回一个连接tcp的多路复用 peer。
 		transport   = p2p.NewMultiplexTransport(nodeInfo, *nodeKey, mConnConfig)
+
+		// p2p连接过滤器
 		connFilters = []p2p.ConnFilterFunc{}
+		// p2p节点过滤器
 		peerFilters = []p2p.PeerFilterFunc{}
 	)
 
+	// 不允许重复IP
 	if !config.P2P.AllowDuplicateIP {
+		// 添加重复IP的连接过滤器
 		connFilters = append(connFilters, p2p.ConnDuplicateIPFilter())
 	}
 
 	// Filter peers by addr or pubkey with an ABCI query.
 	// If the query return code is OK, add peer.
+	/**
+	使用addr或pubkey通过ABCI查询过滤 peers。
+	如果查询返回代码是OK，则添加peer。
+	 */
 	if config.FilterPeers {
+		// 添加 连接过滤
 		connFilters = append(
 			connFilters,
 			// ABCI query for address filtering.
@@ -478,6 +554,7 @@ func NewNode(config *cfg.Config,
 			},
 		)
 
+		// 添加 peer 过滤
 		peerFilters = append(
 			peerFilters,
 			// ABCI query for ID filtering.
@@ -497,21 +574,33 @@ func NewNode(config *cfg.Config,
 		)
 	}
 
+	// MultiplexTransportConnFilters设置拒绝新连接的过滤器。
 	p2p.MultiplexTransportConnFilters(connFilters...)(transport)
 
 	// Setup Switch.
+	/**
+	设置  P2P开关 实例 (交换机 ??)
+	 */
 	sw := p2p.NewSwitch(
 		config.P2P,
 		transport,
 		p2p.WithMetrics(p2pMetrics),
+		// SwitchPeerFilters设置拒绝新 peers 的过滤器。
 		p2p.SwitchPeerFilters(peerFilters...),
 	)
+	// 添加 p2p logger
 	sw.SetLogger(p2pLogger)
+	// 添加 mempool反应器
 	sw.AddReactor("MEMPOOL", mempoolReactor)
+	// 添加 blockchain反应器
 	sw.AddReactor("BLOCKCHAIN", bcReactor)
+	// 添加 共识反应器
 	sw.AddReactor("CONSENSUS", consensusReactor)
+	// 添加 凭证反应器
 	sw.AddReactor("EVIDENCE", evidenceReactor)
+	// 添加 节点基础信息
 	sw.SetNodeInfo(nodeInfo)
+	// 添加 nodeKey
 	sw.SetNodeKey(nodeKey)
 
 	p2pLogger.Info("P2P Node ID", "ID", nodeKey.ID(), "file", config.NodeKeyFile())
@@ -528,26 +617,52 @@ func NewNode(config *cfg.Config,
 	//
 	// If PEX is on, it should handle dialing the seeds. Otherwise the switch does it.
 	// Note we currently use the addrBook regardless at least for AddOurAddress
+	/**
+	可选的，启动 pex反应器 （peer交换反应器  peer-exchange reactor）
+
+	我们需要在 P2P开关 上设置Seeds （种子节点?）和 PersistentPeers （内置节点?），
+	因为即使PEX关闭，它也需要能够使用这些（及其DNS名称）。
+	我们可以在NetAddress中包含DNS名称，
+	但是我们可以使用net_info返回当前“PersistentPeers”的清单，
+	这仍然很好。
+
+
+	如果PEX打开，它应该处理 连接种子节点。 否则开关会这样做。
+	注意我们目前使用addrBook，至少对于AddOurAddress
+	 */
+	// 创建地址 字典 (硬编码种子节点 ?)
 	addrBook := pex.NewAddrBook(config.P2P.AddrBookFile(), config.P2P.AddrBookStrict)
 
 	// Add ourselves to addrbook to prevent dialing ourselves
+	// 将自己添加到addrbook以防止 连接自己
 	addrBook.AddOurAddress(sw.NetAddress())
 
+
 	addrBook.SetLogger(p2pLogger.With("book", config.P2P.AddrBookFile()))
+
+	// 如果 启用 pex 反应器的话
 	if config.P2P.PexReactor {
 		// TODO persistent peers ? so we can have their DNS addrs saved
+		// TODO 持久的 peers？ 所以我们可以保存他们的DNS地址
+		// 创建一个 pex 反应器实例
 		pexReactor := pex.NewPEXReactor(addrBook,
 			&pex.PEXReactorConfig{
 				Seeds:    splitAndTrimEmpty(config.P2P.Seeds, ",", " "),
 				SeedMode: config.P2P.SeedMode,
 			})
 		pexReactor.SetLogger(logger.With("module", "pex"))
+
+		// 将pex 反应器添加到 p2p 开关
 		sw.AddReactor("PEX", pexReactor)
 	}
 
+	// 将地址字典 添加到 p2p 开关
 	sw.SetAddrBook(addrBook)
 
 	// run the profile server
+	// 运行配置文件服务器
+	//
+	// 或全部当前node的监听地址
 	profileHost := config.ProfListenAddress
 	if profileHost != "" {
 		go func() {
@@ -555,34 +670,62 @@ func NewNode(config *cfg.Config,
 		}()
 	}
 
+	/**
+	TODO
+	初始化一个 tendermint 的node实例
+	 */
 	node := &Node{
+		// 配置
 		config:        config,
+		// 创世文件
 		genesisDoc:    genDoc,
+		// 一个可以签署 votes 和 proposals 的本地Tendermint验证器
 		privValidator: privValidator,
-
+		// 一个连接tcp的多路复用 peer。（传输器 相关）
 		transport: transport,
+		//  p2p 开关
 		sw:        sw,
+		// 地址字典
 		addrBook:  addrBook,
+		// 当前节点的node的基础信息
 		nodeInfo:  nodeInfo,
+		// 当前节点的nodeKey
 		nodeKey:   nodeKey,
 
+		// 当前的stateDB (state/state.go)
 		stateDB:          stateDB,
+		// blockStoreDB的包装层，里面还包含了 链上最高块的 height
 		blockStore:       blockStore,
+		/* 创建一个blockchain 的反应器 */
 		bcReactor:        bcReactor,
+		/* 创建一个 交易池的 反应器 */
 		mempoolReactor:   mempoolReactor,
+		/* 共识state */
 		consensusState:   consensusState,
+		/* 共识反应器 */
 		consensusReactor: consensusReactor,
+		/* 凭证pool */
 		evidencePool:     evidencePool,
+		//  proxyApp并建立与ABCI应用程序的连接（共识，mempool，查询）。
 		proxyApp:         proxyApp,
+		// tx的 索引器
 		txIndexer:        txIndexer,
+		// 索引服务
 		indexerService:   indexerService,
+		// 事件 bus
 		eventBus:         eventBus,
 	}
+
+	/**
+	最后将该node实例添加到 BaseService
+	 */
 	node.BaseService = *cmn.NewBaseService(logger, "Node", node)
+	// 返回一个 tendermint 节点实例
 	return node, nil
 }
 
 // OnStart starts the Node. It implements cmn.Service.
+// OnStart启动Node。 它实现了cmn.Service。
 func (n *Node) OnStart() error {
 	now := tmtime.Now()
 	genTime := n.genesisDoc.GenesisTime
@@ -638,6 +781,7 @@ func (n *Node) OnStart() error {
 }
 
 // OnStop stops the Node. It implements cmn.Service.
+// OnStop停止节点。 它实现了cmn.Service。
 func (n *Node) OnStop() {
 	n.BaseService.OnStop()
 

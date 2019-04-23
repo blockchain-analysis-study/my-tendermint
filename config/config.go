@@ -185,6 +185,7 @@ type BaseConfig struct {
 	ABCI string `mapstructure:"abci"`
 
 	// TCP or UNIX socket address for the profiling server to listen on
+	// 要侦听的分析服务器的TCP或UNIX套接字地址
 	ProfListenAddress string `mapstructure:"prof_laddr"`
 
 	// If true, query the ABCI app on connecting to a new peer
@@ -473,6 +474,7 @@ type P2PConfig struct {
 	RecvRate int64 `mapstructure:"recv_rate"`
 
 	// Set true to enable the peer-exchange reactor
+	// 设置为true以启用 peer交换反应器
 	PexReactor bool `mapstructure:"pex"`
 
 	// Seed mode, in which node constantly crawls the network and looks for
@@ -486,6 +488,7 @@ type P2PConfig struct {
 	PrivatePeerIDs string `mapstructure:"private_peer_ids"`
 
 	// Toggle to disable guard against peers connecting from the same ip.
+	// 切换以禁用对来自同一ip的对等体的防范。
 	AllowDuplicateIP bool `mapstructure:"allow_duplicate_ip"`
 
 	// Peer connection configuration.
@@ -709,6 +712,7 @@ func TestConsensusConfig() *ConsensusConfig {
 }
 
 // WaitForTxs returns true if the consensus should wait for transactions before entering the propose step
+// 如果共识应在进入建议步骤之前等待 tx ，则WaitForTxs返回true
 func (cfg *ConsensusConfig) WaitForTxs() bool {
 	return !cfg.CreateEmptyBlocks || cfg.CreateEmptyBlocksInterval > 0
 }
