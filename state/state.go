@@ -274,11 +274,19 @@ func MakeGenesisState(genDoc *types.GenesisDoc) (State, error) {
 		validatorSet = types.NewValidatorSet(nil)
 		nextValidatorSet = types.NewValidatorSet(nil)
 	} else {
+
+		/**
+		加载 创世文件中的验证人信息
+		 */
 		validators := make([]*types.Validator, len(genDoc.Validators))
 		for i, val := range genDoc.Validators {
 			validators[i] = types.NewValidator(val.PubKey, val.Power)
 		}
+		/**
+		加载 创世文件中的验证人信息
+		*/
 		validatorSet = types.NewValidatorSet(validators)
+		// copy当前轮的形成下一轮？
 		nextValidatorSet = types.NewValidatorSet(validators).CopyIncrementProposerPriority(1)
 	}
 

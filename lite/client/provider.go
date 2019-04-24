@@ -106,6 +106,8 @@ func (p *provider) getValidatorSet(chainID string, height int64) (valset *types.
 		err = fmt.Errorf("expected height >= 1, got height %v", height)
 		return
 	}
+
+	// 从底层获取验证人列表
 	res, err := p.client.Validators(&height)
 	if err != nil {
 		// TODO pass through other types of errors.

@@ -232,6 +232,11 @@ func (app *localClient) BeginBlockSync(req types.RequestBeginBlock) (*types.Resp
 	return &res, nil
 }
 
+
+/**
+TODO 超级重要入口
+其实最终 tendermint是通过这个调用了 cosmos的baseApp.EndBlock方法的
+ */
 func (app *localClient) EndBlockSync(req types.RequestEndBlock) (*types.ResponseEndBlock, error) {
 	app.mtx.Lock()
 	defer app.mtx.Unlock()

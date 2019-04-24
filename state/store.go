@@ -43,6 +43,9 @@ func LoadStateFromDBOrGenesisFile(stateDB dbm.DB, genesisFilePath string) (State
 // LoadStateFromDBOrGenesisDoc loads the most recent state from the database,
 // or creates a new one from the given genesisDoc and persists the result
 // to the database.
+/**
+db中加载创世文件 state
+ */
 func LoadStateFromDBOrGenesisDoc(stateDB dbm.DB, genesisDoc *types.GenesisDoc) (State, error) {
 	state := LoadState(stateDB)
 	if state.IsEmpty() {
@@ -58,6 +61,7 @@ func LoadStateFromDBOrGenesisDoc(stateDB dbm.DB, genesisDoc *types.GenesisDoc) (
 }
 
 // LoadState loads the State from the database.
+// 从DB中加载 当前最新的state
 func LoadState(db dbm.DB) State {
 
 	// TODO 我们可以看到他是整个 state 存DB 了

@@ -158,11 +158,13 @@ func (blockExec *BlockExecutor) ApplyBlock(state State, blockID types.BlockID, b
 	fail.Fail() // XXX
 
 	// Save the results before we commit.
+	// 保存 ABCI 回来的resp
 	saveABCIResponses(blockExec.db, block.Height, abciResponses)
 
 	fail.Fail() // XXX
 
 	// validate the validator updates and convert to tendermint types
+	// 验证验证器更新并转换为tendermint类型
 	abciValUpdates := abciResponses.EndBlock.ValidatorUpdates
 	err = validateValidatorUpdates(abciValUpdates, state.ConsensusParams.Validator)
 	if err != nil {
@@ -177,6 +179,10 @@ func (blockExec *BlockExecutor) ApplyBlock(state State, blockID types.BlockID, b
 	}
 
 	// Update the state with the block and responses.
+	/**
+	TODO 重要， 这个才是 state 更新的 入口
+	根据执行完的 block 和 ABCI的resp结果 更新当前 state
+	 */
 	state, err = updateState(state, blockID, &block.Header, abciResponses, validatorUpdates)
 	if err != nil {
 		return state, fmt.Errorf("Commit failed for application: %v", err)
@@ -348,6 +354,10 @@ func execBlockOnProxyApp(
 	}
 
 	// End block.
+	// TODO 注意了 这一步超级重要
+	// 这里底层其实是 调用了 cosmos 的 func (app *BaseApp) EndBlock(req abci.RequestEndBlock) (res abci.ResponseEndBlock)
+	// 获取到上层 cosmos 的最新的变更(排序之后的 验证人列表) 都在abciResponses里面了
+	// types.pb.go
 	abciResponses.EndBlock, err = proxyAppConn.EndBlockSync(abci.RequestEndBlock{Height: block.Height})
 	if err != nil {
 		logger.Error("Error in proxyAppConn.EndBlock", "err", err)
@@ -410,16 +420,24 @@ func getBeginBlockValidatorInfo(block *types.Block, lastValSet *types.ValidatorS
 
 func validateValidatorUpdates(abciUpdates []abci.ValidatorUpdate,
 	params types.ValidatorParams) error {
+
+	/**
+	遍历入参的 abci.ValidatorUpdate 类型的验证人列表
+	 */
 	for _, valUpdate := range abciUpdates {
 		if valUpdate.GetPower() < 0 {
 			return fmt.Errorf("Voting power can't be negative %v", valUpdate)
 		} else if valUpdate.GetPower() == 0 {
-			// continue, since this is deleting the validator, and thus there is no
+			// valUpdatecontinue, since this is deleting the validator, and thus there is no
 			// pubkey to check
+			/**
+			如果是一个没有质押/委托金的验证人，那么我们可以跳过了
+			 */
 			continue
 		}
 
 		// Check if validator's pubkey matches an ABCI type in the consensus params
+		// 检查验证器的pubkey是否与共识参数中的ABCI类型匹配
 		thisKeyType := valUpdate.PubKey.Type
 		if !params.IsValidPubkeyType(thisKeyType) {
 			return fmt.Errorf("Validator %v is using pubkey %s, which is unsupported for consensus",
@@ -430,6 +448,8 @@ func validateValidatorUpdates(abciUpdates []abci.ValidatorUpdate,
 }
 
 // updateState returns a new State updated according to the header and responses.
+// updateState:
+// 返回根据 header 和 abci resp更新的新状态。
 func updateState(
 	state State,
 	blockID types.BlockID,
@@ -457,6 +477,9 @@ func updateState(
 	nValSet.IncrementProposerPriority(1)
 
 	// Update the params with the latest abciResponses.
+	/**
+	使用最新的abciResponses更新params。
+	 */
 	nextParams := state.ConsensusParams
 	lastHeightParamsChanged := state.LastHeightConsensusParamsChanged
 	if abciResponses.EndBlock.ConsensusParamUpdates != nil {

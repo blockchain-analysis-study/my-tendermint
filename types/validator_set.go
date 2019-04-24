@@ -52,6 +52,12 @@ type ValidatorSet struct {
 // the new ValidatorSet will have an empty list of Validators.
 // The addresses of validators in `valz` must be unique otherwise the
 // function panics.
+/**
+NewValidatorSet:
+通过复制来自`valz`（Validators列表）的值来初始化ValidatorSet。
+如果valz为nil或为空，则新的ValidatorSet将具有Validators的空列表。
+`valz`中验证器的地址必须是唯一的，否则为功能恐慌。
+ */
 func NewValidatorSet(valz []*Validator) *ValidatorSet {
 	vals := &ValidatorSet{}
 	err := vals.updateWithChangeSet(valz, false)
@@ -106,6 +112,11 @@ func (vals *ValidatorSet) IncrementProposerPriority(times int) {
 	vals.Proposer = proposer
 }
 
+
+/**
+TODO 重要，重新衡量权重优先级
+计算优先级？
+ */
 func (vals *ValidatorSet) RescalePriorities(diffMax int64) {
 	if vals.IsNilOrEmpty() {
 		panic("empty validator set")
@@ -113,6 +124,10 @@ func (vals *ValidatorSet) RescalePriorities(diffMax int64) {
 	// NOTE: This check is merely a sanity check which could be
 	// removed if all tests would init. voting power appropriately;
 	// i.e. diffMax should always be > 0
+	/**
+	注意：此检查仅仅是一个完整性检查，如果所有测试都是init，则可以删除该检查。 投票权适当;
+	即diffMax应始终> 0
+	 */
 	if diffMax <= 0 {
 		return
 	}
@@ -120,6 +135,11 @@ func (vals *ValidatorSet) RescalePriorities(diffMax int64) {
 	// Calculating ceil(diff/diffMax):
 	// Re-normalization is performed by dividing by an integer for simplicity.
 	// NOTE: This may make debugging priority issues easier as well.
+	/**
+	计算ceil（diff / diffMax）：
+	为简单起见，通过除以整数来执行重新归一化。
+	注意：这可能会使调试优先级问题更容易。
+	 */
 	diff := computeMaxMinPriorityDiff(vals)
 	ratio := (diff + diffMax - 1) / diffMax
 	if diff > diffMax {
@@ -129,6 +149,10 @@ func (vals *ValidatorSet) RescalePriorities(diffMax int64) {
 	}
 }
 
+
+/**
+增加 提议人的 权重优先级
+ */
 func (vals *ValidatorSet) incrementProposerPriority() *Validator {
 	for _, val := range vals.Validators {
 		// Check for overflow for sum.
@@ -160,12 +184,19 @@ func (vals *ValidatorSet) computeAvgProposerPriority() int64 {
 }
 
 // Compute the difference between the max and min ProposerPriority of that set.
+/**
+计算该集合的最大和最小ProposerPriority之间的差异。
+ */
 func computeMaxMinPriorityDiff(vals *ValidatorSet) int64 {
 	if vals.IsNilOrEmpty() {
 		panic("empty validator set")
 	}
 	max := int64(math.MinInt64)
 	min := int64(math.MaxInt64)
+
+	/**
+	遍历当前所有验证人
+	 */
 	for _, v := range vals.Validators {
 		if v.ProposerPriority < min {
 			min = v.ProposerPriority
@@ -337,6 +368,12 @@ func (vals *ValidatorSet) Iterate(fn func(index int, val *Validator) bool) {
 // err - non-nil if duplicate entries or entries with negative voting power are seen
 //
 // No changes are made to 'origChanges'.
+/**
+根据重复项检查更改，拆分更新和删除中的更改，按地址对其进行排序。
+返回：
+更新，删除 - 更新和删除的排序列表
+错误 - 如果看到具有负投票权的重复条目或条目，则为非零。不对“origChanges”进行任何更改。
+ */
 func processChanges(origChanges []*Validator) (updates, removals []*Validator, err error) {
 	// Make a deep copy of the changes and sort by address.
 	changes := validatorListCopy(origChanges)
@@ -526,6 +563,12 @@ func (vals *ValidatorSet) applyRemovals(deletes []*Validator) {
 // If 'allowDeletes' is false then delete operations (identified by validators with voting power 0)
 // are not allowed and will trigger an error if present in 'changes'.
 // The 'allowDeletes' flag is set to false by NewValidatorSet() and to true by UpdateWithChangeSet().
+/**
+被 UpdateWithChangeSet（）和NewValidatorSet（）所调用的主要函数。
+如果'allowDeletes'为false，则不允许删除操作（由具有投票权0的验证器标识）并且如果存在于'changes'中则将触发错误。
+'allowDeletes'标志由NewValidatorSet（）设置为false，
+UpdateWithChangeSet（）设置为true。
+ */
 func (vals *ValidatorSet) updateWithChangeSet(changes []*Validator, allowDeletes bool) error {
 
 	if len(changes) <= 0 {
@@ -533,6 +576,7 @@ func (vals *ValidatorSet) updateWithChangeSet(changes []*Validator, allowDeletes
 	}
 
 	// Check for duplicates within changes, split in 'updates' and 'deletes' lists (sorted).
+	// 检查更改中的重复项，分为“更新”和“删除”列表（已排序）。
 	updates, deletes, err := processChanges(changes)
 	if err != nil {
 		return err

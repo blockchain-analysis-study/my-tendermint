@@ -210,8 +210,11 @@ func NewHandshaker(stateDB dbm.DB, state sm.State,
 	store sm.BlockStore, genDoc *types.GenesisDoc) *Handshaker {
 
 	return &Handshaker{
+		// 这是一个db实例的封装
 		stateDB:      stateDB,
+		// 这是 创世块的state
 		initialState: state,
+		// 这个是 blockdb的一个封装 blockstore
 		store:        store,
 		eventBus:     types.NopEventBus{},
 		genDoc:       genDoc,

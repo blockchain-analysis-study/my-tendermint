@@ -37,6 +37,8 @@ func (v *Validator) Copy() *Validator {
 }
 
 // Returns the one with higher ProposerPriority.
+// 返回权重优先级较高的那个 验证人
+// 返回ProposerPriority较高的那个
 func (v *Validator) CompareProposerPriority(other *Validator) *Validator {
 	if v == nil {
 		return other

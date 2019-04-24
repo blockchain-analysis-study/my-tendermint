@@ -209,6 +209,7 @@ func (pb2tm) PubKey(pubKey abci.PubKey) (crypto.PubKey, error) {
 	}
 }
 
+// 组装一波
 func (pb2tm) ValidatorUpdates(vals []abci.ValidatorUpdate) ([]*Validator, error) {
 	tmVals := make([]*Validator, len(vals))
 	for i, v := range vals {

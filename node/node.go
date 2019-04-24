@@ -325,6 +325,7 @@ func NewNode(config *cfg.Config,
 	// Handshake, and may have other modifications as well (ie. depending on
 	// what happened during block replay).
 	/**
+	TODO 重要 state的读取
 	加载当前最新的 state
 	 */
 	state = sm.LoadState(stateDB)
@@ -441,6 +442,7 @@ func NewNode(config *cfg.Config,
 	blockExecLogger := logger.With("module", "state")
 	// make block executor for consensus and blockchain reactors to execute blocks
 	/**
+	TODO 重要
 	初始化 区块执行器
 	使块执行器达成共识，并使区块链反应器执行块
 	 */
@@ -468,6 +470,7 @@ func NewNode(config *cfg.Config,
 	 */
 	consensusState := cs.NewConsensusState(
 		config.Consensus,
+		// 将当前最新的state  copy到 共识state中
 		state.Copy(),
 		blockExec,
 		blockStore,
