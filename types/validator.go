@@ -98,6 +98,12 @@ func (v *Validator) Bytes() []byte {
 
 // RandValidator returns a randomized validator, useful for testing.
 // UNSTABLE
+/**
+
+RandValidator:
+返回一个随机验证人，对测试很有用。
+不稳定
+ */
 func RandValidator(randPower bool, minPower int64) (*Validator, PrivValidator) {
 	privVal := NewMockPV()
 	votePower := minPower

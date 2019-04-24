@@ -68,6 +68,8 @@ type VoteSet struct {
 }
 
 // Constructs a new VoteSet struct used to accumulate votes for given height/round.
+// TODO 初始化一个 保存 在当前轮次当前块高上所得选票的集合
+// 构造一个新的VoteSet结构，用于累积 指定 块高/回合(round)的投票信息。
 func NewVoteSet(chainID string, height int64, round int, type_ SignedMsgType, valSet *ValidatorSet) *VoteSet {
 	if height == 0 {
 		cmn.PanicSanity("Cannot make VoteSet for height == 0, doesn't make sense.")
@@ -77,8 +79,12 @@ func NewVoteSet(chainID string, height int64, round int, type_ SignedMsgType, va
 		height:        height,
 		round:         round,
 		type_:         type_,
+
+		// 当前轮的所有验证人集合
 		valSet:        valSet,
 		votesBitArray: cmn.NewBitArray(valSet.Size()),
+
+		/* 投票信息保存在这里， 这里新创建一个 空切片 */
 		votes:         make([]*Vote, valSet.Size()),
 		sum:           0,
 		maj23:         nil,

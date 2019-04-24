@@ -50,6 +50,7 @@ import (
 // 	"jsonrpc": "2.0"
 // }
 // ```
+// 根据 指定块高获取 盖块高的验证人列表
 func Validators(ctx *rpctypes.Context, heightPtr *int64) (*ctypes.ResultValidators, error) {
 	// The latest validator that we know is the
 	// NextValidator of the last block.

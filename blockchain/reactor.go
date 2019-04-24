@@ -335,6 +335,8 @@ FOR_LOOP:
 				// 获取之前注册在 sw 对象中的 共识反应器
 				conR, ok := bcR.Switch.Reactor("CONSENSUS").(consensusReactor)
 				if ok {
+
+					// 切换成共识模式
 					conR.SwitchToConsensus(state, blocksSynced)
 				} else {
 					// should only happen during testing

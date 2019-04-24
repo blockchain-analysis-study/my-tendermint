@@ -402,7 +402,10 @@ func getHeight(currentHeight int64, heightPtr *int64) (int64, error) {
 		if height > currentHeight {
 			return 0, fmt.Errorf("Height must be less than or equal to the current blockchain height")
 		}
+
+		// 如果指定块高小于当前块高，返回指定块高
 		return height, nil
 	}
+	// 如果没有指定块高，则返回当前块高
 	return currentHeight, nil
 }

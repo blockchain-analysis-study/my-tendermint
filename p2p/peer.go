@@ -238,6 +238,10 @@ func (p *peer) Status() tmconn.ConnectionStatus {
 
 // Send msg bytes to the channel identified by chID byte. Returns false if the
 // send queue is full after timeout, specified by MConnection.
+/**
+TODO p2p广播 msg
+将msg字节发送到由chID字节标识的通道。 如果MConnection指定的超时后发送队列已满，则返回false。
+ */
 func (p *peer) Send(chID byte, msgBytes []byte) bool {
 	if !p.IsRunning() {
 		// see Switch#Broadcast, where we fetch the list of peers and loop over

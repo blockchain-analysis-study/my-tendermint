@@ -14,6 +14,7 @@ import (
 // Validate block
 
 /**
+TODO 超级重要
 校验 区块
  */
 func validateBlock(evidencePool EvidencePool, stateDB dbm.DB, state State, block *types.Block) error {

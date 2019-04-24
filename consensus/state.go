@@ -177,6 +177,9 @@ type ConsensusState struct {
 type StateOption func(*ConsensusState)
 
 // NewConsensusState returns a new ConsensusState.
+/**
+创建一个新的 共识 state
+ */
 func NewConsensusState(
 	config *cfg.ConsensusConfig,
 	state sm.State,
@@ -381,6 +384,14 @@ go run scripts/json2wal/main.go wal.json $WALFILE # rebuild the file without cor
 
 // timeoutRoutine: receive requests for timeouts on tickChan and fire timeouts on tockChan
 // receiveRoutine: serializes processing of proposoals, block parts, votes; coordinates state transitions
+/**
+启动新的一轮共识 [但是为什么都只是在test中用？？]
+
+timeoutRoutine：
+	在tockChan上接收tickChan和fire timeout超时请求
+receiveRoutine：
+	序列化提议，块部分，投票的处理; 协调状态转换
+ */
 func (cs *ConsensusState) startRoutines(maxSteps int) {
 	err := cs.timeoutTicker.Start()
 	if err != nil {
@@ -518,16 +529,28 @@ func (cs *ConsensusState) sendInternalMessage(mi msgInfo) {
 
 // Reconstruct LastCommit from SeenCommit, which we saved along with the block,
 // (which happens even before saving the state)
+/**
+TODO 重新组装 当前 预提交阶段的信息
+从SeenCommit重建LastCommit，我们与 block一起保存（甚至在保存状态之前就会发生）
+ */
 func (cs *ConsensusState) reconstructLastCommit(state sm.State) {
 	if state.LastBlockHeight == 0 {
 		return
 	}
+
+	// 加载本地最新的 commit 信息
 	seenCommit := cs.blockStore.LoadSeenCommit(state.LastBlockHeight)
+
+	// 初始化一个 保存 在当前轮次当前块高上所得选票的集合
+	// 构造一个新的VoteSet结构，用于累积 指定 块高/回合(round)的投票信息
+	// 主要入参： 链上最高块 height、当前round、当前共识类型为： 预提交、 当前轮的所有验证人集合
 	lastPrecommits := types.NewVoteSet(state.ChainID, state.LastBlockHeight, seenCommit.Round(), types.PrecommitType, state.LastValidators)
 	for _, precommit := range seenCommit.Precommits {
 		if precommit == nil {
 			continue
 		}
+
+		// 收集所有当前 预提交阶段 获得的投票
 		added, err := lastPrecommits.AddVote(seenCommit.ToVote(precommit))
 		if !added || err != nil {
 			cmn.PanicCrisis(fmt.Sprintf("Failed to reconstruct LastCommit: %v", err))
@@ -565,6 +588,7 @@ func (cs *ConsensusState) updateToState(state sm.State) {
 	}
 
 	// Reset fields based on state.
+	// 验证人列表
 	validators := state.Validators
 	lastPrecommits := (*types.VoteSet)(nil)
 	if cs.CommitRound > -1 && cs.Votes != nil {
@@ -1009,6 +1033,7 @@ func (cs *ConsensusState) isProposalComplete() bool {
 // Returns nil block upon error.
 // NOTE: keep it side-effect free for clarity.
 /**
+TODO 共识的开始 第一步  发起 提议
 创建下一个块发起提案并返回它。
 我们实际上只需要返回部分，但为方便起见返回了块，因此我们可以记录提议块。
 出错时返回nil块。

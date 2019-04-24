@@ -79,6 +79,9 @@ func (vals *ValidatorSet) CopyIncrementProposerPriority(times int) *ValidatorSet
 // IncrementProposerPriority increments ProposerPriority of each validator and updates the
 // proposer. Panics if validator set is empty.
 // `times` must be positive.
+// IncrementProposerPriority
+// 递增每个验证器的ProposerPriority并更新提议者。
+// 如果验证器设置为空，则发生混乱。 `times`必须是积极的。
 func (vals *ValidatorSet) IncrementProposerPriority(times int) {
 	if vals.IsNilOrEmpty() {
 		panic("empty validator set")
@@ -788,11 +791,16 @@ func (valz ValidatorsByAddress) Swap(i, j int) {
 }
 
 //----------------------------------------
-// for testing
+// for testing 为了测试用的
 
 // RandValidatorSet returns a randomized validator set, useful for testing.
 // NOTE: PrivValidator are in order.
 // UNSTABLE
+/**
+RandValidatorSet返回一个随机验证器集，对测试很有用。
+注意：PrivValidator是有序的。
+不稳定
+ */
 func RandValidatorSet(numValidators int, votingPower int64) (*ValidatorSet, []PrivValidator) {
 	valz := make([]*Validator, numValidators)
 	privValidators := make([]PrivValidator, numValidators)

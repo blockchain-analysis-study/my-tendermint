@@ -18,17 +18,86 @@ type RoundStepType uint8 // These must be numeric, ordered.
 // RoundStepType
 /**
 共识的步骤类型
+【H，R】  H 为 block height； R 为 Round
+TODO 注意：
+
+在Tendermint算法中，如果遇到对同一特定区块的同意及否决信息同时超过2/3的情况，
+需要启用【外部的维护机制】去核查是否存在超过1/3的验证节点伪造签名或者投出双重选票
  */
 const (
+
+	/**
+	TODO 新的高度阶段 【H+1】
+
+
+	步骤：
+	将于提交信息转移至 【最近】(last) 的提交信息,
+	并增加block height。
+
+	结果：
+	等待一定超时时间，让落后的节点 提交区块，
+	然后进入 (下一个)【提议阶段】【H+1,0】
+
+	 */
 	// 处于等到CommitTime + timeoutCommit 的阶段
 	RoundStepNewHeight     = RoundStepType(0x01) // Wait til CommitTime + timeoutCommit
+
+
+
+	/**
+	TODO 新一轮的开始阶段 【R+1】
+	 */
 	// 设置新轮并转到RoundStepPropose
 	RoundStepNewRound      = RoundStepType(0x02) // Setup new round and go to RoundStepPropose
 
+
+
+
+
+
+	/**
+	TODO ###############################
+	TODO 提议阶段  【H，R】
+	步骤：
+	指定提议者提议一个块
+
+	结果：
+	1、进入与投票阶段
+		a、计数器1超时
+		b、如果共识节点收到提议且达到POLC 阶段所需的预投票
+	2、普通退出情况
+	TODO -------------------------------
+	 */
 	/**
 	发起提案，并广播提案
 	 */
 	RoundStepPropose       = RoundStepType(0x03) // Did propose, gossip proposal
+
+
+
+
+
+
+
+
+
+	/**
+	TODO ###############################
+	TODO 预投票阶段   【H，R】
+	步骤：
+	每个验证人都要广播自己的预选投票。
+	若在提议阶段提议的block是有效的，
+	那么该验证节点统一该区块。
+	如果block无效或者验证人在超时时间内未及时收到提议，
+	则透出 <nil> 表示否决。
+
+	结果：
+	1、进入与预提交阶段
+		a、收到超过 2/3 的(任意)预投票，但后来计数器2超时。
+		b、对特定的块 同意/否决的预投票，超过 2/3
+	2、普通退出情况
+	TODO -------------------------------
+	*/
 	/**
 	发起 prevote，并广播 prevote
 	 */
@@ -37,6 +106,32 @@ const (
 	等待接收 x > 2/3 的 prevote (一个等待超时阶段)
 	 */
 	RoundStepPrevoteWait   = RoundStepType(0x05) // Did receive any +2/3 prevotes, start timeout
+
+
+
+
+
+
+
+
+
+	/**
+	TODO ###############################
+	TODO 预提交阶段    【H，R】
+	步骤：
+	每个验证人都要广播自己的预提交 投票。
+	如果验证人在【H，R】的POLC 回合同意该 block，
+	那么该验证人将广播 (表示同意该区块的)预提交信息。
+	否则，如果该验证人 否决 或者 为见证 POLC 回合，
+	则将广播包含 <nil> 的预提交信息。
+
+	结果：
+	1、进入与 提议阶段 【H，R+1】阶段
+		a、收到超过 2/3 的(任意)预 提交，但后来计数器3超时。
+		b、对特定的块 <nil>的预提交，超过 2/3
+	2、普通退出情况
+	TODO -------------------------------
+	*/
 	/**
 	发起 precommit，并广播 precommit
 	 */
@@ -45,6 +140,23 @@ const (
 	等待接收 x > 2/3 的 precommit (一个等待超时阶段)
 	 */
 	RoundStepPrecommitWait = RoundStepType(0x07) // Did receive any +2/3 precommits, start timeout
+
+
+
+
+
+
+
+
+	/**
+	TODO ###############################
+	TODO 提交阶段  (最终提交阶段)  【H】
+	步骤：
+	设置提交时间为当前时间。
+
+	结果：
+	一旦区块被接收，则进入新的高度阶段 【H+1】
+	TODO -------------------------------
 	/**
 	最终的 commit 阶段
 	 */

@@ -175,6 +175,7 @@ func saveABCIResponses(db dbm.DB, height int64, abciResponses *ABCIResponses) {
 //-----------------------------------------------------------------------------
 
 // ValidatorsInfo represents the latest validator set, or the last height it changed
+// ValidatorsInfo表示最新的验证器集，或者它更改的最后一个高度
 type ValidatorsInfo struct {
 	ValidatorSet      *types.ValidatorSet
 	LastHeightChanged int64
@@ -193,7 +194,9 @@ func LoadValidators(db dbm.DB, height int64) (*types.ValidatorSet, error) {
 		return nil, ErrNoValSetForHeight{height}
 	}
 
+	// 如果没有找到
 	if valInfo.ValidatorSet == nil {
+		// 根据这里面记录的有值块高去找
 		valInfo2 := loadValidatorsInfo(db, valInfo.LastHeightChanged)
 		if valInfo2 == nil {
 			panic(
@@ -212,6 +215,7 @@ func LoadValidators(db dbm.DB, height int64) (*types.ValidatorSet, error) {
 }
 
 // CONTRACT: Returned ValidatorsInfo can be mutated.
+// 返回当前块高的验证人列表
 func loadValidatorsInfo(db dbm.DB, height int64) *ValidatorsInfo {
 	buf := db.Get(calcValidatorsKey(height))
 	if len(buf) == 0 {

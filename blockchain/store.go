@@ -128,6 +128,12 @@ func (bs *BlockStore) LoadBlockCommit(height int64) *types.Commit {
 // LoadSeenCommit returns the locally seen Commit for the given height.
 // This is useful when we've seen a commit, but there has not yet been
 // a new block at `height + 1` that includes this commit in its block.LastCommit.
+/**
+TODO 加载 本地的最新commit信息
+LoadSeenCommit:
+返回 指定高度的本地看到的Commit。
+当我们看到一个提交时，这很有用，但是`height + 1`上还没有一个新的块，它在block.LastCommit中包含了这个提交。
+ */
 func (bs *BlockStore) LoadSeenCommit(height int64) *types.Commit {
 	var commit = new(types.Commit)
 	bz := bs.db.Get(calcSeenCommitKey(height))
