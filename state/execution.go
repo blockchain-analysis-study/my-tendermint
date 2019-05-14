@@ -159,10 +159,12 @@ func (blockExec *BlockExecutor) ApplyBlock(state State, blockID types.BlockID, b
 
 	// Save the results before we commit.
 	// 保存 ABCI 回来的resp
+	// 把 resp 存起来 ??
 	saveABCIResponses(blockExec.db, block.Height, abciResponses)
 
 	fail.Fail() // XXX
 
+	// TODO
 	// validate the validator updates and convert to tendermint types
 	// 验证验证器更新并转换为tendermint类型
 	abciValUpdates := abciResponses.EndBlock.ValidatorUpdates
@@ -180,7 +182,11 @@ func (blockExec *BlockExecutor) ApplyBlock(state State, blockID types.BlockID, b
 
 	// Update the state with the block and responses.
 	/**
+	TODO ###########
+	TODO ###########
+
 	TODO 重要， 这个才是 state 更新的 入口
+	TODO 根据拉回来的 cosmos 的实时验证人 更新 state
 	根据执行完的 block 和 ABCI的resp结果 更新当前 state
 	 */
 	state, err = updateState(state, blockID, &block.Header, abciResponses, validatorUpdates)
@@ -326,13 +332,19 @@ func execBlockOnProxyApp(
 	}
 
 	// 设置 resp 回调
+	// TODO 注意： 这里调用 cosmos
 	proxyAppConn.SetResponseCallback(proxyCb)
 
 
-	// TODO 。。。
+	// TODO
 	commitInfo, byzVals := getBeginBlockValidatorInfo(block, lastValSet, stateDB)
 
 	// Begin block
+	//
+	// TODO 重要
+	//
+	// TODO 执行一个区块开始前 调用 func (app *GaiaApp) BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) abci.ResponseBeginBlock
+	// func (app *GaiaApp) BeginBlocker()
 	var err error
 	abciResponses.BeginBlock, err = proxyAppConn.BeginBlockSync(abci.RequestBeginBlock{
 		Hash:                block.Hash(),
@@ -354,8 +366,9 @@ func execBlockOnProxyApp(
 	}
 
 	// End block.
+	// TODO 获取cosmos变更的 验证人 列表
 	// TODO 注意了 这一步超级重要
-	// 这里底层其实是 调用了 cosmos 的 func (app *BaseApp) EndBlock(req abci.RequestEndBlock) (res abci.ResponseEndBlock)
+	// TODO 调用了 cosmos的 (app *GaiaApp) EndBlocker(ctx sdk.Context, req abci.RequestEndBlock) abci.ResponseEndBlock
 	// 获取到上层 cosmos 的最新的变更(排序之后的 验证人列表) 都在abciResponses里面了
 	// types.pb.go
 	abciResponses.EndBlock, err = proxyAppConn.EndBlockSync(abci.RequestEndBlock{Height: block.Height})
@@ -418,10 +431,12 @@ func getBeginBlockValidatorInfo(block *types.Block, lastValSet *types.ValidatorS
 
 }
 
+// TODO 校验从 cosmos 过来的验证人列表是否 合法
 func validateValidatorUpdates(abciUpdates []abci.ValidatorUpdate,
 	params types.ValidatorParams) error {
 
 	/**
+	TODO 遍历从 cosmos 过来的最新的 验证人列表
 	遍历入参的 abci.ValidatorUpdate 类型的验证人列表
 	 */
 	for _, valUpdate := range abciUpdates {
@@ -465,6 +480,7 @@ func updateState(
 	// Update the validator set with the latest abciResponses.
 	lastHeightValsChanged := state.LastHeightValidatorsChanged
 	if len(validatorUpdates) > 0 {
+		// TODO 这不很重要，更新验证人列表 (根据 cosmos 过来的验证人列表)
 		err := nValSet.UpdateWithChangeSet(validatorUpdates)
 		if err != nil {
 			return state, fmt.Errorf("Error changing validator set: %v", err)
@@ -472,8 +488,12 @@ func updateState(
 		// Change results from this height but only applies to the next next height.
 		lastHeightValsChanged = header.Height + 1 + 1
 	}
-
 	// Update validator proposer priority and set state variables.
+	/**
+	TODO 重要， 更新验证人 ， 提议人的权重 并设置 状态变量
+
+	TODO 选出提议人
+	 */
 	nValSet.IncrementProposerPriority(1)
 
 	// Update the params with the latest abciResponses.
@@ -482,6 +502,8 @@ func updateState(
 	 */
 	nextParams := state.ConsensusParams
 	lastHeightParamsChanged := state.LastHeightConsensusParamsChanged
+
+	// 从 cosmos返回的 resp 中获取 共识参数
 	if abciResponses.EndBlock.ConsensusParamUpdates != nil {
 		// NOTE: must not mutate s.ConsensusParams
 		nextParams = state.ConsensusParams.Update(abciResponses.EndBlock.ConsensusParamUpdates)
@@ -505,9 +527,16 @@ func updateState(
 		LastBlockTotalTx:                 state.LastBlockTotalTx + header.NumTxs,
 		LastBlockID:                      blockID,
 		LastBlockTime:                    header.Time,
+		/**
+		替换三轮验证人列表
+		 */
+		// 注意了下一轮验证人列表可能会更改
 		NextValidators:                   nValSet,
+		// 下一轮的编程当前轮
 		Validators:                       state.NextValidators.Copy(),
+		// 当前轮的编程 上一轮
 		LastValidators:                   state.Validators.Copy(),
+
 		LastHeightValidatorsChanged:      lastHeightValsChanged,
 		ConsensusParams:                  nextParams,
 		LastHeightConsensusParamsChanged: lastHeightParamsChanged,

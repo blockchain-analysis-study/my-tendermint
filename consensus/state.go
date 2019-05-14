@@ -1415,10 +1415,18 @@ func (cs *ConsensusState) finalizeCommit(height int64) {
 	fail.Fail() // XXX
 
 	// Create a copy of the state for staging and an event cache for txs.
+	//
+	// copy 当前状态
 	stateCopy := cs.state.Copy()
 
 	// Execute and commit the block, update and save the state, and update the mempool.
 	// NOTE The block.AppHash wont reflect these txs until the next block.
+	/*
+	TODO 重要
+
+	执行并提交块，更新并保存状态，并更新mempool。
+	注意block.AppHash在下一个块之前不会反映这些tx。
+	*/
 	var err error
 	stateCopy, err = cs.blockExec.ApplyBlock(stateCopy, types.BlockID{Hash: block.Hash(), PartsHeader: blockParts.Header()}, block)
 	if err != nil {

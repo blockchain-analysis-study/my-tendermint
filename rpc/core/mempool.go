@@ -60,6 +60,7 @@ import (
 // |-----------+------+---------+----------+-----------------|
 // | tx        | Tx   | nil     | true     | The transaction |
 func BroadcastTxAsync(ctx *rpctypes.Context, tx types.Tx) (*ctypes.ResultBroadcastTx, error) {
+	// 将 tx 添加到 tx pool 中
 	err := mempool.CheckTx(tx, nil)
 	if err != nil {
 		return nil, err
@@ -210,6 +211,10 @@ func BroadcastTxCommit(ctx *rpctypes.Context, tx types.Tx) (*ctypes.ResultBroadc
 
 	// Broadcast tx and wait for CheckTx result
 	checkTxResCh := make(chan *abci.Response, 1)
+
+	/**
+	TODO 将tx 追加到 tx pool 中
+	 */
 	err = mempool.CheckTx(tx, func(res *abci.Response) {
 		checkTxResCh <- res
 	})

@@ -86,6 +86,8 @@ func (vals *ValidatorSet) CopyIncrementProposerPriority(times int) *ValidatorSet
 // proposer. Panics if validator set is empty.
 // `times` must be positive.
 // IncrementProposerPriority
+//
+// TODO 重要哦
 // 递增每个验证器的ProposerPriority并更新提议者。
 // 如果验证器设置为空，则发生混乱。 `times`必须是积极的。
 func (vals *ValidatorSet) IncrementProposerPriority(times int) {
@@ -106,9 +108,15 @@ func (vals *ValidatorSet) IncrementProposerPriority(times int) {
 	var proposer *Validator
 	// Call IncrementProposerPriority(1) times times.
 	for i := 0; i < times; i++ {
+		/**
+		增加 提议人的 权重优先级
+
+		TODO 主要是 确认 提议人 哈哈哈
+		*/
 		proposer = vals.incrementProposerPriority()
 	}
 
+	// 确认 提议人
 	vals.Proposer = proposer
 }
 
@@ -152,16 +160,27 @@ func (vals *ValidatorSet) RescalePriorities(diffMax int64) {
 
 /**
 增加 提议人的 权重优先级
+
+TODO 主要是 确认 提议人 哈哈哈
  */
 func (vals *ValidatorSet) incrementProposerPriority() *Validator {
+
+	// 遍历所有验证人
 	for _, val := range vals.Validators {
 		// Check for overflow for sum.
+		//
+		// 检查 优先级和得票权重
 		newPrio := safeAddClip(val.ProposerPriority, val.VotingPower)
+		// 更新验证人的 优先级
 		val.ProposerPriority = newPrio
 	}
+
 	// Decrement the validator with most ProposerPriority.
+	//
+	// 返回权重优先级较高的那个 验证人
 	mostest := vals.getValWithMostPriority()
 	// Mind the underflow.
+	// 注意下溢
 	mostest.ProposerPriority = safeSubClip(mostest.ProposerPriority, vals.TotalVotingPower())
 
 	return mostest
@@ -213,9 +232,12 @@ func computeMaxMinPriorityDiff(vals *ValidatorSet) int64 {
 	}
 }
 
+// 返回权重优先级较高的那个 验证人
 func (vals *ValidatorSet) getValWithMostPriority() *Validator {
 	var res *Validator
+	// 遍历 验证人列表
 	for _, val := range vals.Validators {
+		// 返回权重优先级较高的那个 验证人
 		res = res.CompareProposerPriority(val)
 	}
 	return res
@@ -564,6 +586,7 @@ func (vals *ValidatorSet) applyRemovals(deletes []*Validator) {
 // are not allowed and will trigger an error if present in 'changes'.
 // The 'allowDeletes' flag is set to false by NewValidatorSet() and to true by UpdateWithChangeSet().
 /**
+TODO 重要， 更新验证人 （根据 cosmos过来的 实时验证人列表）
 被 UpdateWithChangeSet（）和NewValidatorSet（）所调用的主要函数。
 如果'allowDeletes'为false，则不允许删除操作（由具有投票权0的验证器标识）并且如果存在于'changes'中则将触发错误。
 'allowDeletes'标志由NewValidatorSet（）设置为false，
@@ -630,6 +653,22 @@ func (vals *ValidatorSet) updateWithChangeSet(changes []*Validator, allowDeletes
 // - performs scaling and centering of priority values
 // If an error is detected during verification steps, it is returned and the validator set
 // is not changed.
+/*
+UpdateWithChangeSet尝试使用“更改”更新验证程序集 (一般是 更新下一轮的)
+它执行以下步骤：
+
+ - 验证更改，确保没有重复项，并在更新和删除中拆分它们
+ - 验证应用更改不会导致错误
+ - 计算清除前的总投票权，以确保在接下来的步骤中确定优先级
+   旧的和新添加的验证器是公平的
+ - 根据最终集计算新验证器的优先级
+ - 对验证器集应用更新
+ - 对验证器集应用删除
+ - 执行优先级值的缩放和居中
+
+如果在验证步骤中检测到错误，则返回该错误并且不更改验证器集。
+
+*/
 func (vals *ValidatorSet) UpdateWithChangeSet(changes []*Validator) error {
 	return vals.updateWithChangeSet(changes, true)
 }
