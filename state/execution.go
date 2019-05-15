@@ -359,6 +359,13 @@ func execBlockOnProxyApp(
 
 	// Run txs of block.
 	for _, tx := range block.Txs {
+
+		/*
+		TODO 这里调用了 cosmos 的 func (app *BaseApp) DeliverTx(txBytes []byte) (res abci.ResponseDeliverTx)
+
+		执行交易为什么放到上层，因为 tendermint 只是个共识层，不同的链集成了 tendermint的话，需要自己实现这些 rpc接口，
+		自己维护自己的 业务交易逻辑，tendermint 才不管这个，tendermint只管交易的结果！
+		*/
 		proxyAppConn.DeliverTxAsync(tx)
 		if err := proxyAppConn.Error(); err != nil {
 			return nil, err
@@ -368,7 +375,7 @@ func execBlockOnProxyApp(
 	// End block.
 	// TODO 获取cosmos变更的 验证人 列表
 	// TODO 注意了 这一步超级重要
-	// TODO 调用了 cosmos的 (app *GaiaApp) EndBlocker(ctx sdk.Context, req abci.RequestEndBlock) abci.ResponseEndBlock
+	// TODO 调用了 cosmos的 func (app *GaiaApp) EndBlocker(ctx sdk.Context, req abci.RequestEndBlock) abci.ResponseEndBlock
 	// 获取到上层 cosmos 的最新的变更(排序之后的 验证人列表) 都在abciResponses里面了
 	// types.pb.go
 	abciResponses.EndBlock, err = proxyAppConn.EndBlockSync(abci.RequestEndBlock{Height: block.Height})

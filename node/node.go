@@ -366,7 +366,7 @@ func NewNode(config *cfg.Config,
 	决定是否快速同步
 	当唯一的验证器是我们时，我们不会快速同步。
 	 */
-	fastSync := config.FastSync   // //默认开启快速同步
+	fastSync := config.FastSync   // TODO 默认开启快速同步
 	if state.Validators.Size() == 1 {
 		addr, _ := state.Validators.GetByIndex(0)   //返回验证人的地址
 		privValAddr := privValidator.GetPubKey().Address()

@@ -71,6 +71,7 @@ type Switch struct {
 	reactors     map[string]Reactor
 	chDescs      []*conn.ChannelDescriptor
 	reactorsByCh map[byte]Reactor
+	// 当前节点保存的 对端节点的 缓存
 	peers        *PeerSet
 	dialing      *cmn.CMap
 	reconnecting *cmn.CMap
@@ -480,8 +481,15 @@ func (sw *Switch) IsDialingOrExistingAddress(addr *NetAddress) bool {
 		(!sw.config.AllowDuplicateIP && sw.peers.HasIP(addr.IP))
 }
 
+
+// TODO 接受对端发起的拨号连接的 协程
+//
+// 相呼应方法为： func (sw *Switch) addOutboundPeerWithConfig()
 func (sw *Switch) acceptRoutine() {
 	for {
+
+		// TODO p2p的 接受一个对端节点的连接
+		//
 		p, err := sw.transport.Accept(peerConfig{
 			chDescs:      sw.chDescs,
 			onPeerError:  sw.StopPeerForError,
@@ -550,6 +558,7 @@ func (sw *Switch) acceptRoutine() {
 			continue
 		}
 
+		// 添加 对端节点信息到本地缓存
 		if err := sw.addPeer(p); err != nil {
 			sw.transport.Cleanup(p)
 			if p.IsRunning() {
@@ -569,6 +578,14 @@ func (sw *Switch) acceptRoutine() {
 // if dialing fails, start the reconnect loop. If handhsake fails, its over.
 // If peer is started succesffuly, reconnectLoop will start when
 // StopPeerForError is called
+
+//	TODO 发起拨号连接对端节点
+//  秘密连接; 根据拨打的身份验证进行身份验证;
+//
+//	如果拨号失败，请启动重新连接循环。 如果handhsake失败，它结束了。
+//	如果peer成功启动，则在调用StopPeerForError时将启动reconnectLoop
+//
+// 相呼应的方法为： func (sw *Switch) acceptRoutine()
 func (sw *Switch) addOutboundPeerWithConfig(
 	addr *NetAddress,
 	cfg *config.P2PConfig,
@@ -582,6 +599,7 @@ func (sw *Switch) addOutboundPeerWithConfig(
 		return fmt.Errorf("dial err (peerConfig.DialFail == true)")
 	}
 
+	// TODO P2P的 发起链接对端节点
 	p, err := sw.transport.Dial(*addr, peerConfig{
 		chDescs:      sw.chDescs,
 		onPeerError:  sw.StopPeerForError,
@@ -611,6 +629,7 @@ func (sw *Switch) addOutboundPeerWithConfig(
 		return err
 	}
 
+	// 添加 对端节点信息到本地缓存
 	if err := sw.addPeer(p); err != nil {
 		sw.transport.Cleanup(p)
 		if p.IsRunning() {
@@ -624,6 +643,7 @@ func (sw *Switch) addOutboundPeerWithConfig(
 
 func (sw *Switch) filterPeer(p Peer) error {
 	// Avoid duplicate
+	// 阻止重复 peerId
 	if sw.peers.Has(p.ID()) {
 		return ErrRejected{id: p.ID(), isDuplicate: true}
 	}
@@ -652,7 +672,11 @@ func (sw *Switch) filterPeer(p Peer) error {
 
 // addPeer starts up the Peer and adds it to the Switch. Error is returned if
 // the peer is filtered out or failed to start or can't be added.
+/*
+启动Peer并将其添加到Switch。 如果 对端peer 被过滤掉或无法启动或无法添加，则会返回错误。
+*/
 func (sw *Switch) addPeer(p Peer) error {
+
 	if err := sw.filterPeer(p); err != nil {
 		return err
 	}
@@ -686,6 +710,8 @@ func (sw *Switch) addPeer(p Peer) error {
 	sw.metrics.Peers.Add(float64(1))
 
 	// Start all the reactor protocols on the peer.
+	//
+	// 启动 对端节点上的所有reactor协议
 	for _, reactor := range sw.reactors {
 		reactor.AddPeer(p)
 	}

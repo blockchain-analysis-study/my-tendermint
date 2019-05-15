@@ -16,8 +16,16 @@ import (
 
 const (
 	// BlockchainChannel is a channel for blocks and status updates (`BlockStore` height)
+	/*
+	BlockchainChannel是块和状态更新的通道（`BlockStore` height）
+
+	Block 传输消息类型
+	*/
 	BlockchainChannel = byte(0x40)
 
+	/*
+	尝试广播的消息 定时触发间隔
+	*/
 	trySyncIntervalMS = 10
 
 	// stop syncing when last block's time is

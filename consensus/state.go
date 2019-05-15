@@ -650,12 +650,23 @@ func (cs *ConsensusState) newStep() {
 
 //-----------------------------------------
 // the main go routines
+// TODO 主要的协程
+
+
+
 
 // receiveRoutine handles messages which may cause state transitions.
 // it's argument (n) is the number of messages to process before exiting - use 0 to run forever
 // It keeps the RoundState and is the only thing that updates it.
 // Updates (state transitions) happen on timeouts, complete proposals, and 2/3 majorities.
 // ConsensusState must be locked before any internal state is updated.
+/*
+
+receiveRoutine处理可能导致状态转换的消息。
+它的参数（n）是退出前要处理的消息数 - 使用0来永久运行它保留了RoundState并且是唯一更新它的东西。
+更新（状态转换）发生在超时，完整提案和2/3多数上。
+在更新任何内部状态之前，必须锁定ConsensusState。
+*/
 func (cs *ConsensusState) receiveRoutine(maxSteps int) {
 	onExit := func(cs *ConsensusState) {
 		// NOTE: the internalMsgQueue may have signed messages from our

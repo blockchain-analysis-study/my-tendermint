@@ -273,11 +273,15 @@ func (p *peer) TrySend(chID byte, msgBytes []byte) bool {
 }
 
 // Get the data for a given key.
+//
+// TODO p2p向本地的对端节点缓存 获取数据
 func (p *peer) Get(key string) interface{} {
 	return p.Data.Get(key)
 }
 
 // Set sets the data for the given key.
+//
+// TODO 将数据保存在 本地的对端节点缓存
 func (p *peer) Set(key string, data interface{}) {
 	p.Data.Set(key, data)
 }

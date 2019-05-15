@@ -20,11 +20,24 @@ import (
 )
 
 const (
+	/*
+	state 传输消息类型
+	*/
 	StateChannel       = byte(0x20)
+	/*
+	数据 传输消息类型
+	*/
 	DataChannel        = byte(0x21)
+	/*
+	投票 传输消息类型
+	*/
 	VoteChannel        = byte(0x22)
+	/*
+	投票前签名消息类型
+	*/
 	VoteSetBitsChannel = byte(0x23)
 
+	// 与types.PartSet大小保持同步
 	maxMsgSize = 1048576 // 1MB; NOTE/TODO: keep in sync with types.PartSet sizes.
 
 	blocksToContributeToBecomeGoodPeer = 10000
@@ -77,6 +90,8 @@ func (conR *ConsensusReactor) OnStart() error {
 	conR.subscribeToBroadcastEvents()
 
 	if !conR.FastSync() {
+		// 调用 func (bs *BaseService) Start()
+		// TODO 即： tendermint 的node start
 		err := conR.conS.Start()
 		if err != nil {
 			return err
@@ -168,16 +183,27 @@ func (conR *ConsensusReactor) AddPeer(peer p2p.Peer) {
 	}
 
 	// Create peerState for peer
+	// 创建一个 对端节点的 peerState实例
 	peerState := NewPeerState(peer).SetLogger(conR.Logger)
 	peer.Set(types.PeerStateKey, peerState)
 
 	// Begin routines for this peer.
+	/*
+	TODO ###########################
+	TODO ###########################
+
+	启动协程 gossip 节点的 state、vote 等等之类的信息
+
+	TODO ###########################
+	TODO ###########################
+	*/
 	go conR.gossipDataRoutine(peer, peerState)
 	go conR.gossipVotesRoutine(peer, peerState)
 	go conR.queryMaj23Routine(peer, peerState)
 
 	// Send our state to peer.
 	// If we're fast_syncing, broadcast a RoundStepMessage later upon SwitchToConsensus().
+	// 将我们的state 发送给 对端节点
 	if !conR.FastSync() {
 		conR.sendNewRoundStepMessage(peer)
 	}
@@ -202,12 +228,23 @@ func (conR *ConsensusReactor) RemovePeer(peer p2p.Peer, reason interface{}) {
 // Peer state updates can happen in parallel, but processing of
 // proposals, block parts, and votes are ordered by the receiveRoutine
 // NOTE: blocks on consensus state for proposals, block parts, and votes
+/*
+接受对端信息 ？
+
+
+接收实现 Reactor
+注意：即使我们是fast_syncing，我们也会处理这些消息。
+消息影响 peer状态 或 共识状态。
+peer状态更新可以并行发生，但是 receiveRoutine 会对提议，块部分和投票的处理进行排序
+注意：提案，块部分和投票的共识状态块
+*/
 func (conR *ConsensusReactor) Receive(chID byte, src p2p.Peer, msgBytes []byte) {
 	if !conR.IsRunning() {
 		conR.Logger.Debug("Receive", "src", src, "chId", chID, "bytes", msgBytes)
 		return
 	}
 
+	// 将 msg的byte字节转化成 msg 实例
 	msg, err := decodeMsg(msgBytes)
 	if err != nil {
 		conR.Logger.Error("Error decoding message", "src", src, "chId", chID, "msg", msg, "err", err, "bytes", msgBytes)
@@ -215,6 +252,7 @@ func (conR *ConsensusReactor) Receive(chID byte, src p2p.Peer, msgBytes []byte) 
 		return
 	}
 
+	// 校验 msg 的合法性
 	if err = msg.ValidateBasic(); err != nil {
 		conR.Logger.Error("Peer sent us invalid msg", "peer", src, "msg", msg, "err", err)
 		conR.Switch.StopPeerForError(src, err)
@@ -362,6 +400,9 @@ func (conR *ConsensusReactor) SetEventBus(b *types.EventBus) {
 }
 
 // FastSync returns whether the consensus reactor is in fast-sync mode.
+/*
+TODO 重要，判断是否快速同步模式
+*/
 func (conR *ConsensusReactor) FastSync() bool {
 	conR.mtx.RLock()
 	defer conR.mtx.RUnlock()
