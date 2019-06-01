@@ -99,6 +99,9 @@ func (blockExec *BlockExecutor) CreateProposalBlock(
 
 	// Fetch a limited amount of valid evidence
 	maxNumEvidence, _ := types.MaxEvidencePerBlock(maxBytes)
+	/*
+	收集 所有双签证据
+	*/
 	evidence := blockExec.evpool.PendingEvidence(maxNumEvidence)
 
 	// Fetch a limited amount of valid txs
@@ -148,6 +151,11 @@ func (blockExec *BlockExecutor) ApplyBlock(state State, blockID types.BlockID, b
 	//
 	/** TODO 创建proxyApp并建立与ABCI应用程序的连接（共识，mempool，查询）。 */
 	// 这里是入参了 proxyApp.Consensus() 获取到的所有参与共识的链接？
+	/*
+	TODO 每个块执行之前， 每个块执行其中交易， 每个块执行之后 都要组合里作为入口
+
+	TODO 执行 block 的代理
+	*/
 	abciResponses, err := execBlockOnProxyApp(blockExec.logger, blockExec.proxyApp, block, state.LastValidators, blockExec.db)
 	endTime := time.Now().UnixNano()
 	blockExec.metrics.BlockProcessingTime.Observe(float64(endTime-startTime) / 1000000)
@@ -275,7 +283,7 @@ func (blockExec *BlockExecutor) Commit(
 // Returns a list of transaction results and updates to the validator set
 /**
 TODO 重要的 辅助函数
-辅助函数用于执行block和更新state
+辅助函数用于执行block和更新state  TODO (注意: 这个是重放 block，而不是 打包新 block 哦)
 
 在proxyAppConn上执行块的 tx。
 返回 tx结果列表和 验证人集的更新
@@ -336,7 +344,7 @@ func execBlockOnProxyApp(
 	proxyAppConn.SetResponseCallback(proxyCb)
 
 
-	// TODO
+	// TODO 在执行区块之前，拉取关于当前 验证人相关的一些信息，
 	commitInfo, byzVals := getBeginBlockValidatorInfo(block, lastValSet, stateDB)
 
 	// Begin block
@@ -358,6 +366,9 @@ func execBlockOnProxyApp(
 	}
 
 	// Run txs of block.
+	/*
+	TODO 执行当前区块中的每一笔交易
+	*/
 	for _, tx := range block.Txs {
 
 		/*
@@ -389,6 +400,10 @@ func execBlockOnProxyApp(
 	return abciResponses, nil
 }
 
+
+/*
+TODO 执行一个block之前拉取当前验证人的  所有相关信息
+*/
 func getBeginBlockValidatorInfo(block *types.Block, lastValSet *types.ValidatorSet, stateDB dbm.DB) (abci.LastCommitInfo, []abci.Evidence) {
 
 	// Sanity check that commit length matches validator set size -
@@ -423,6 +438,9 @@ func getBeginBlockValidatorInfo(block *types.Block, lastValSet *types.ValidatorS
 	}
 
 	byzVals := make([]abci.Evidence, len(block.Evidence.Evidence))
+	/*
+	TODO 收集所有关于 拜占庭双签的证据
+	*/
 	for i, ev := range block.Evidence.Evidence {
 		// We need the validator set. We already did this in validateBlock.
 		// TODO: Should we instead cache the valset in the evidence itself and add
