@@ -43,7 +43,7 @@ type Block struct {
 	Header     `json:"header"`
 	// 区块体数据
 	Data       `json:"data"`
-	// 区块的凭证
+	// 区块的双签凭证
 	Evidence   EvidenceData `json:"evidence"`
 
 	// 最终确认该块时的commit信息

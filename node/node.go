@@ -315,7 +315,7 @@ func NewNode(config *cfg.Config,
 	handshaker.SetEventBus(eventBus)
 
 	/**
-	处理 P2P 握手(handshake)？？ TODO
+	处理 P2P 握手(handshake) TODO
 	 */
 	if err := handshaker.Handshake(proxyApp); err != nil {
 		return nil, fmt.Errorf("Error during handshake: %v", err)

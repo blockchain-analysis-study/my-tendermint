@@ -32,7 +32,7 @@ func main() {
 		cmd.GenNodeKeyCmd,
 		cmd.VersionCmd)
 
-	// NOTE:
+	// NOTE:maosi
 	// Users wishing to:
 	//	* Use an external signer for their validators
 	//	* Supply an in-proc abci app
