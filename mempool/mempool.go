@@ -615,6 +615,9 @@ func (mem *Mempool) notifyTxsAvailable() {
 // with the condition that the total gasWanted must be less than maxGas.
 // If both maxes are negative, there is no cap on the size of all returned
 // transactions (~ all available transactions).
+//
+// ReapMaxBytesMaxGas： 可从内存池中提取 tx，直至总计maxBytes个字节，条件是gasWanted的总数必须小于maxGas。
+// 如果两个最大值均为负，则所有返回的交易（〜所有可用交易）的大小没有上限
 func (mem *Mempool) ReapMaxBytesMaxGas(maxBytes, maxGas int64) types.Txs {
 	mem.proxyMtx.Lock()
 	defer mem.proxyMtx.Unlock()
@@ -642,6 +645,10 @@ func (mem *Mempool) ReapMaxBytesMaxGas(maxBytes, maxGas int64) types.Txs {
 		// If maxGas is negative, skip this check.
 		// Since newTotalGas < masGas, which
 		// must be non-negative, it follows that this won't overflow.
+		//
+		// 检查总气体必要条件。
+		// 如果maxGas为负，则跳过此检查。
+		// 由于newTotalGas <masGas（必须为非负数），因此不会溢出。
 		newTotalGas := totalGas + memTx.gasWanted
 		if maxGas > -1 && newTotalGas > maxGas {
 			return txs
@@ -766,13 +773,18 @@ func (mem *Mempool) recheckTxs(txs []types.Tx) {
 //--------------------------------------------------------------------------------
 
 // mempoolTx is a transaction that successfully ran
+//
+// mempoolTx是成功运行的tx
 type mempoolTx struct {
-	height    int64    // height that this tx had been validated in
-	gasWanted int64    // amount of gas this tx states it will require
+	height    int64    // height that this tx had been validated in       此TX已在其中验证的高度
+	gasWanted int64    // amount of gas this tx states it will require    该TX指出需要的gas 数量
 	tx        types.Tx //
 
 	// ids of peers who've sent us this tx (as a map for quick lookups).
 	// senders: PeerID -> bool
+	//
+	// 发送给我们此TX的同行的ID（作为快速查找的Map）。
+	// tx发送人：PeerID-> bool
 	senders sync.Map
 }
 

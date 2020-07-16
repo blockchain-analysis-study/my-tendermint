@@ -726,6 +726,8 @@ func (cs *ConsensusState) receiveRoutine(maxSteps int) {
 			}
 
 			// handles proposals, block parts, votes
+			//
+			// todo 这里 处理 proposals 和 block 和 votes
 			cs.handleMsg(mi)
 		case ti := <-cs.timeoutTicker.Chan(): // tockChan:
 			cs.wal.Write(ti)
@@ -740,6 +742,10 @@ func (cs *ConsensusState) receiveRoutine(maxSteps int) {
 }
 
 // state transitions on complete-proposal, 2/3-any, 2/3-one
+//
+// 完整提案，2 / 3-any，2 / 3-one的状态转换
+//
+// // todo 这里 处理 proposals 和 block 和 votes
 func (cs *ConsensusState) handleMsg(mi msgInfo) {
 	cs.mtx.Lock()
 	defer cs.mtx.Unlock()
@@ -976,6 +982,7 @@ func (cs *ConsensusState) isProposer(address []byte) bool {
 }
 
 /**
+todo
 默认 决定发起一个提案
 [发起一个提案，产生一个具备提案的block]
 根据 最新块高和轮次
@@ -992,7 +999,8 @@ func (cs *ConsensusState) defaultDecideProposal(height int64, round int) {
 		block, blockParts = cs.ValidBlock, cs.ValidBlockParts
 	} else {
 		// Create a new proposal block from state/txs from the mempool.
-		// 从mempool中的state / txs创建一个新的提议块。
+		//
+		// todo 从mempool中的state / txs创建一个新的提议块。 (注意, 这里的 tx 还未被执行)
 		block, blockParts = cs.createProposalBlock()
 		if block == nil { // on error
 			return
@@ -1008,6 +1016,8 @@ func (cs *ConsensusState) defaultDecideProposal(height int64, round int) {
 	if err := cs.privValidator.SignProposal(cs.state.ChainID, proposal); err == nil {
 
 		// send proposal and block parts on internal msg queue
+		//
+		// 发送 proposal 和 block 到 内部消息队列
 		cs.sendInternalMessage(msgInfo{&ProposalMessage{proposal}, ""})
 		for i := 0; i < blockParts.Total(); i++ {
 			part := blockParts.GetPart(i)
