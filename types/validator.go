@@ -15,9 +15,9 @@ import (
 type Validator struct {
 	Address     Address       `json:"address"`
 	PubKey      crypto.PubKey `json:"pub_key"`
-	VotingPower int64         `json:"voting_power"`
+	VotingPower int64         `json:"voting_power"`   // 验证人的 token 转化成的 权重票
 
-	ProposerPriority int64 `json:"proposer_priority"`
+	ProposerPriority int64 `json:"proposer_priority"`  // 验证人的权重优先级, 用来选提议人的
 }
 
 func NewValidator(pubKey crypto.PubKey, votingPower int64) *Validator {
@@ -37,6 +37,7 @@ func (v *Validator) Copy() *Validator {
 }
 
 // Returns the one with higher ProposerPriority.
+// todo 选提议人   选Proposer
 // TODO 这个涉及到选 提议人
 // 返回权重优先级较高的那个 验证人
 // 返回ProposerPriority较高的那个

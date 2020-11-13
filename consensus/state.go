@@ -878,7 +878,7 @@ func (cs *ConsensusState) enterNewRound(height int64, round int) {
 	validators := cs.Validators
 	if cs.Round < round {
 		validators = validators.Copy()
-		validators.IncrementProposerPriority(round - cs.Round)
+		validators.IncrementProposerPriority(round - cs.Round) // 根据 投票的 round 来计算新的 提议人选择优先级
 	}
 
 	// Setup new round

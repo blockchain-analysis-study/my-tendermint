@@ -90,7 +90,7 @@ func (vals *ValidatorSet) CopyIncrementProposerPriority(times int) *ValidatorSet
 // TODO 重要哦
 // 递增每个验证器的ProposerPriority并更新提议者。
 // 如果验证器设置为空，则发生混乱。 `times`必须是积极的。
-func (vals *ValidatorSet) IncrementProposerPriority(times int) {
+func (vals *ValidatorSet) IncrementProposerPriority(times int) {   // times 表示第几次计算, todo 调整提议人优先级
 	if vals.IsNilOrEmpty() {
 		panic("empty validator set")
 	}
@@ -101,8 +101,8 @@ func (vals *ValidatorSet) IncrementProposerPriority(times int) {
 	// Cap the difference between priorities to be proportional to 2*totalPower by
 	// re-normalizing priorities, i.e., rescale all priorities by multiplying with:
 	//  2*totalVotingPower/(maxPriority - minPriority)
-	diffMax := PriorityWindowSizeFactor * vals.TotalVotingPower()
-	vals.RescalePriorities(diffMax)
+	diffMax := PriorityWindowSizeFactor * vals.TotalVotingPower()  // 2/总票数
+	vals.RescalePriorities(diffMax)  // 重新衡量各个验证人的提议人优先级
 	vals.shiftByAvgProposerPriority()
 
 	var proposer *Validator
@@ -116,8 +116,7 @@ func (vals *ValidatorSet) IncrementProposerPriority(times int) {
 		proposer = vals.incrementProposerPriority()
 	}
 
-	// 确认 提议人
-	vals.Proposer = proposer
+	vals.Proposer = proposer  // todo 选出提议人
 }
 
 
@@ -125,7 +124,7 @@ func (vals *ValidatorSet) IncrementProposerPriority(times int) {
 TODO 重要，重新衡量权重优先级
 计算优先级？
  */
-func (vals *ValidatorSet) RescalePriorities(diffMax int64) {
+func (vals *ValidatorSet) RescalePriorities(diffMax int64) {  // 重新衡量各个验证人的提议人优先级
 	if vals.IsNilOrEmpty() {
 		panic("empty validator set")
 	}
@@ -148,11 +147,11 @@ func (vals *ValidatorSet) RescalePriorities(diffMax int64) {
 	为简单起见，通过除以整数来执行重新归一化。
 	注意：这可能会使调试优先级问题更容易。
 	 */
-	diff := computeMaxMinPriorityDiff(vals)
-	ratio := (diff + diffMax - 1) / diffMax
+	diff := computeMaxMinPriorityDiff(vals)  // 最大的优先级 - 最小的优先级  = diff
+	ratio := (diff + diffMax - 1) / diffMax  // 计算一个比率
 	if diff > diffMax {
 		for _, val := range vals.Validators {
-			val.ProposerPriority = val.ProposerPriority / ratio
+			val.ProposerPriority = val.ProposerPriority / ratio  // 每个验证人的 提议人优先级都除于这个 比率一下
 		}
 	}
 }
@@ -161,7 +160,7 @@ func (vals *ValidatorSet) RescalePriorities(diffMax int64) {
 /**
 增加 提议人的 权重优先级
 
-TODO 主要是 确认 提议人 哈哈哈
+TODO 主要是 确认 提议人 哈哈哈  (根据权重计算提议人的优先级)
  */
 func (vals *ValidatorSet) incrementProposerPriority() *Validator {
 
@@ -224,7 +223,7 @@ func computeMaxMinPriorityDiff(vals *ValidatorSet) int64 {
 			max = v.ProposerPriority
 		}
 	}
-	diff := max - min
+	diff := max - min  // 最大的优先级 - 最小的优先级
 	if diff < 0 {
 		return -1 * diff
 	} else {
@@ -340,18 +339,20 @@ func (vals *ValidatorSet) TotalVotingPower() int64 {
 
 // GetProposer returns the current proposer. If the validator set is empty, nil
 // is returned.
-func (vals *ValidatorSet) GetProposer() (proposer *Validator) {
+func (vals *ValidatorSet) GetProposer() (proposer *Validator) {  // todo 从验证人列表中选出一个提议人   (从validator列表中选出proposer)
 	if len(vals.Validators) == 0 {
 		return nil
 	}
 	if vals.Proposer == nil {
-		vals.Proposer = vals.findProposer()
+		vals.Proposer = vals.findProposer()  // 找出 提议人
 	}
 	return vals.Proposer.Copy()
 }
 
 func (vals *ValidatorSet) findProposer() *Validator {
 	var proposer *Validator
+
+	// 遍历 所有 验证人
 	for _, val := range vals.Validators {
 		if proposer == nil || !bytes.Equal(val.Address, proposer.Address) {
 			proposer = proposer.CompareProposerPriority(val)
@@ -635,7 +636,7 @@ func (vals *ValidatorSet) updateWithChangeSet(changes []*Validator, allowDeletes
 	vals.updateTotalVotingPower()
 
 	// Scale and center.
-	vals.RescalePriorities(PriorityWindowSizeFactor * vals.TotalVotingPower())
+	vals.RescalePriorities(PriorityWindowSizeFactor * vals.TotalVotingPower())  // 重新衡量各个验证人的提议人优先级
 	vals.shiftByAvgProposerPriority()
 
 	return nil
